@@ -1,0 +1,25 @@
+/* Textos de la página casos (ES / EN / IT) */
+export const T = {
+ 'h.badge':['Casos de éxito','Success stories','Casi di successo'],
+ 'h.t1':['Proyectos reales,','Real projects,','Progetti reali,'],'h.t2':['resultados medibles.','measurable results.','risultati misurabili.'],
+ 'h.sub':['Empresas que ya escalan ingresos, recortan fricción operativa y lideran sus mercados con nuestra ingeniería.','Companies already growing revenue, cutting operational friction and leading their markets with our engineering.','Aziende che già crescono, riducono gli attriti operativi e guidano i loro mercati con la nostra ingegneria.'],
+ 'c.badge':['¿Listo para el siguiente paso?','Ready for the next step?','Pronto per il prossimo passo?'],'c.t1':['¿Tu empresa es el próximo','Is your company the next','La tua azienda è il prossimo'],'c.t2':['caso de éxito?','success story?','caso di successo?'],
+ 'c.sub':['Conversemos sobre tus objetivos y tracemos la ruta técnica para alcanzarlos sin fricción ni retrasos.','Let’s talk about your goals and map the technical route to reach them without friction or delays.','Parliamo dei tuoi obiettivi e tracciamo la strada tecnica per raggiungerli senza attriti né ritardi.'],
+ 'c.wa':['Escríbenos por WhatsApp','Message us on WhatsApp','Scrivici su WhatsApp'],'c.port':['Ver portafolio de diseño →','See our design portfolio →','Vedi il portfolio di design →'],
+ 'wa.cta':['Hola RD, vi sus casos de éxito y quiero conversar sobre mi proyecto.','Hi RD, I saw your success stories and would like to talk about my project.','Ciao RD, ho visto i vostri casi di successo e vorrei parlare del mio progetto.'],
+ 'wa.case':['Hola RD, vi el caso «{c}» y quiero un resultado así para mi empresa.','Hi RD, I saw the “{c}” case and want a result like that for my company.','Ciao RD, ho visto il caso «{c}» e vorrei un risultato simile per la mia azienda.'],
+ 'more':['Ver caso completo','View full case','Vedi il caso completo'],
+ 'o.back':['Volver a los casos','Back to cases','Torna ai casi'],'o.reto':['El reto','The challenge','La sfida'],'o.sol':['La solución','The solution','La soluzione'],'o.res':['El resultado','The result','Il risultato'],
+ 'o.wa':['Quiero un resultado así','I want a result like this','Voglio un risultato così'],'o.next':['Siguiente caso','Next case','Caso successivo'],
+ 'o.pull':['Sigue bajando para cerrar el caso','Keep scrolling to close the case','Continua a scorrere per chiudere il caso'],'o.close':['Cerrar caso','Close case','Chiudi il caso'],
+ 'd.t':['¿Buscas proyectos de diseño y marca?','Looking for design and brand work?','Cerchi progetti di design e branding?'],
+ 'd.d':['Landing pages, identidades de marca, casinos cripto y apps viven en nuestro portafolio 3D.','Landing pages, brand identities, crypto casinos and apps live in our 3D portfolio.','Landing page, identità di marca, casinò crypto e app sono nel nostro portfolio 3D.'],
+ 'd.b':['Abrir portafolio 3D','Open 3D portfolio','Apri il portfolio 3D'],
+ 'b.ck':['Checkout ultra-rápido','Ultra-fast checkout','Checkout ultra-rapido'],'b.buy':['Comprar en 1 clic','Buy in 1 click','Compra in 1 clic'],'b.proc':['Procesando…','Processing…','Elaborazione…'],'b.paid':['Pago confirmado · 0.4s','Payment confirmed · 0.4s','Pagamento confermato · 0.4s'],
+ 'b.conc':['Concurrencia','Concurrency','Concorrenza'],'b.loc':['Local','Home','Casa'],'b.emp':['Empate','Draw','Pareggio'],'b.vis':['Visita','Away','Ospite'],'b.cash':['Cajero cripto + PIX','Crypto + PIX cashier','Cassa crypto + PIX'],'b.wd':['Retiro','Withdrawal','Prelievo'],'b.wdok':['Retiro aprobado ✓','Withdrawal approved ✓','Prelievo approvato ✓'],
+ 'b.copi':['Copiloto IA WhatsApp','WhatsApp AI copilot','Copilota IA WhatsApp'],'b.fact':['Facturación SUNAT','SUNAT invoicing','Fatturazione SUNAT'],
+ 'b.q':['¿Me envías la factura del pedido #4092?','Can you send me the invoice for order #4092?','Mi mandi la fattura dell’ordine #4092?'],'b.a':['Generada y enviada a tu correo con PDF + XML.','Generated and sent to your email as PDF + XML.','Generata e inviata alla tua email in PDF + XML.'],
+ 'b.bank':['Conciliación bancaria','Bank reconciliation','Riconciliazione bancaria'],'b.sq':['100% cuadrado','100% balanced','100% quadrato'],'b.sqing':['Cuadrando…','Balancing…','Quadratura…'],
+ 'b.subs':['Suscripciones recurrentes','Recurring subscriptions','Abbonamenti ricorrenti'],'b.disp':['Dispersión automática','Automatic payouts','Pagamenti automatici'],'b.pend':['Pendiente','Pending','In attesa'],'b.done':['Ejecutada','Completed','Eseguita'],'b.avail':['Disponibilidad del sistema','System availability','Disponibilità del sistema'],
+ 'nx.ba':['Tiempo de despacho de órdenes','Order dispatch time','Tempo di evasione ordini'],'nx.bef':['Antes','Before','Prima'],'nx.aft':['Después','After','Dopo'],'nx.err':['Errores de stock por mes','Stock errors per month','Errori di stock al mese']
+};

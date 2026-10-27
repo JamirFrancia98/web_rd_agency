@@ -1,0 +1,48 @@
+---
+/* Footer común. El logo (#rmark) es el punto final de la línea de luz: se dibuja al llegar. */
+import { UI } from '../i18n/ui.js';
+import { route } from '../i18n/routes.js';
+import { EMAIL, CITY } from '../config.js';
+
+const { lang = 'es', drawn = false } = Astro.props;
+const t = UI[lang].ft;
+const link = (to) => {
+  if (to.startsWith('/#')) return route('home', lang) + to.slice(1);
+  const [p, hash] = to.split('#');
+  return route(p, lang) + (hash ? '#' + hash : '');
+};
+const year = new Date().getFullYear();
+---
+<footer class="site-footer" id="footer">
+  <div class="ft-in">
+    <div class="ft-brand">
+      <a class="ft-logo" href={route('home', lang)}>
+        <svg class={'rmark' + (drawn ? ' done static' : '')} id="rmark" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f5bff"/><stop offset=".55" stop-color="#9b30ff"/><stop offset="1" stop-color="#e21cff"/></linearGradient></defs>
+          <rect class="fillsq" x="6" y="6" width="108" height="108" rx="26"/>
+          <rect class="sq" x="6" y="6" width="108" height="108" rx="26"/>
+          <path class="r" d="M42 88V32h24a16 16 0 0 1 0 32H42M62 64l20 24"/>
+        </svg>
+        <span>revolution digital</span>
+      </a>
+      <p>{t.desc}</p>
+    </div>
+    <div class="ft-cols">
+      <div>
+        <h2>{t.services}</h2>
+        <ul>{t.links.map(([label, to]) => <li><a href={link(to)}>{label}</a></li>)}</ul>
+      </div>
+      <div>
+        <h2>{t.company}</h2>
+        <ul>
+          <li class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>{CITY[lang]}</li>
+          <li class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href={'mailto:' + EMAIL}>{EMAIL}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© {year} Revolution Digital Ltd. {t.rights}</span>
+    <nav aria-label="Legal">{t.legal.map((l) => <a href="#">{l}</a>)}</nav>
+  </div>
+</footer>

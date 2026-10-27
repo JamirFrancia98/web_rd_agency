@@ -1,0 +1,59 @@
+<section class="phero gutter">
+    <div class="wrap">
+      <span class="badge mono fade-in" style="animation-delay:.1s" data-i18n="h.badge">Casos de éxito</span>
+      <h1 id="h1" data-ssr-split="h.t1|h.t2:grad-text"></h1>
+      <p class="lead" data-i18n="h.sub">Empresas que ya escalan ingresos, recortan fricción operativa y lideran sus mercados con nuestra ingeniería.</p>
+      <div class="chips fade-in" id="chips" role="group" aria-label="Filtrar casos"></div>
+    </div>
+    <i class="node" style="left:50%;bottom:20px"></i>
+  </section>
+
+  <section class="sec gutter" style="padding-top:20px" id="cases-sec">
+    <i class="node l" style="top:4%"></i><i class="node l" style="top:48%"></i><i class="node r" style="top:56%"></i><i class="node r" style="bottom:3%"></i>
+    <div class="wrap cases" id="cases"></div>
+  </section>
+
+  <section class="sec gutter" style="padding-top:20px" id="cta-sec">
+    <div class="wrap">
+      <div class="cta-box">
+        <span class="badge mono" data-i18n="c.badge">¿Listo para el siguiente paso?</span>
+        <h2 class="h2"><span data-i18n="c.t1">¿Tu empresa es el próximo</span> <span class="grad-text" data-i18n="c.t2">caso de éxito?</span></h2>
+        <p class="lead" data-i18n="c.sub">Conversemos sobre tus objetivos y tracemos la ruta técnica para alcanzarlos sin fricción ni retrasos.</p>
+        <a class="wa" id="wa-main" href="#" data-wa="wa.cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><span data-i18n="c.wa">Escríbenos por WhatsApp</span></a>
+        <div class="cta-links"><a href="portafolio.html" data-i18n="c.port">Ver portafolio de diseño →</a></div>
+      </div>
+    </div>
+  </section>
+
+<!-- caso completo (misma pestaña) -->
+<div class="case" id="case" hidden role="dialog" aria-modal="true" aria-labelledby="c-title">
+  <div class="cbar gutter">
+    <button class="back" type="button" id="c-back"><span aria-hidden="true">←</span> <span data-i18n="o.back">Volver a los casos</span></button>
+    <div class="right"><a class="wa-sm" id="c-wa-top" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>WhatsApp</a></div>
+  </div>
+  <div class="case-inner gutter">
+    <div class="wrap">
+      <div class="c-head">
+        <span class="co" id="c-co"></span>
+        <h1 id="c-title"></h1>
+        <p class="lead" id="c-desc"></p>
+        <div class="tags" id="c-tags"></div>
+      </div>
+      <div class="c-metrics" id="c-metrics"></div>
+      <div class="story">
+        <div><h4 data-i18n="o.reto">El reto</h4><p id="c-reto"></p></div>
+        <div><h4 data-i18n="o.sol">La solución</h4><p id="c-sol"></p></div>
+        <div><h4 data-i18n="o.res">El resultado</h4><p id="c-res"></p></div>
+      </div>
+      <div class="c-cta">
+        <a class="btn primary" id="c-wa" href="#" target="_blank" rel="noopener"><span data-i18n="o.wa">Quiero un resultado así</span> <span aria-hidden="true">→</span></a>
+      </div>
+      <button class="c-next" type="button" id="c-next"><div><span class="mono kicker" data-i18n="o.next">Siguiente caso</span><h3 id="c-next-t"></h3></div><span aria-hidden="true" style="font-size:26px">→</span></button>
+      <div class="pull">
+        <span class="mono" data-i18n="o.pull">Sigue bajando para cerrar el caso</span>
+        <div class="meter"><i id="c-meter"></i></div>
+        <button type="button" id="c-close"><span data-i18n="o.close">Cerrar caso</span> ×</button>
+      </div>
+    </div>
+  </div>
+</div>

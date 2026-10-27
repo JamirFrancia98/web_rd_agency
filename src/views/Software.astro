@@ -1,0 +1,209 @@
+---
+/* Software a medida — concepto "Arma tu sistema": el visitante compone su propio software */
+import Base from '../layouts/Base.astro';
+import { T } from '../i18n/software.js';
+import { useT } from '../i18n/t.js';
+import { route } from '../i18n/routes.js';
+import { waLink } from '../config.js';
+import '../styles/rd-base.css';
+import '../styles/services.css';
+import '../styles/software.css';
+
+const { lang = 'es' } = Astro.props;
+const t = useT(T, lang);
+let wi = 0;
+const W = (k, cls = '') => t(k).split(' ').map((w) => ({ w, cls, d: (0.15 + 0.08 * wi++).toFixed(2) }));
+const MODS = [
+  ['crm', '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M16 11a3 3 0 1 0 0-6M21 20c0-2.5-2-4-4-4.5"/>', true],
+  ['inv', '<path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7M12 11v10"/>', true],
+  ['fac', '<path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h5"/>', true],
+  ['res', '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3"/>', false],
+  ['pos', '<rect x="4" y="3" width="16" height="12" rx="2"/><path d="M8 21h8M12 15v6M8 8h8"/>', false],
+  ['rep', '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', false],
+  ['hr', '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>', false],
+  ['app', '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>', false],
+];
+const STACK = [['React', 'react', '#61dafb'], ['Node.js', 'node', '#68a063'], ['Laravel', 'laravel', '#ff2d20'], ['PHP', 'php', '#8892bf'], ['Python', 'python', '#ffd43b']];
+---
+<Base lang={lang} page="software">
+  <section class="shero gutter sw-hero">
+    <div class="wrap">
+      <div class="copy">
+        <span class="badge mono">{t('h.badge')}</span>
+        <h1 data-split>{[...W('h.t1'), ...W('h.t2', 'grad-text')].map((x) => <><span class={'w ' + x.cls} style={`animation-delay:${x.d}s`}>{x.w}</span> </>)}</h1>
+        <p class="lead" set:html={t('h.sub')} />
+        <div class="actions">
+          <a class="btn primary" href="#arma">{t('h.cta')} <span aria-hidden="true">↓</span></a>
+          <a class="btn" href="#ahorro">{t('h.cta2')}</a>
+        </div>
+      </div>
+      <div class="morph" aria-hidden="true">
+        <div class="xls">
+          <div class="xls-bar"><i></i><i></i><i></i><span>ventas_FINAL_v7(2).xlsx</span></div>
+          <div class="xls-grid">{Array.from({ length: 48 }, (_, i) => <span class={i % 6 === 0 ? 'h' : (i * 7) % 11 === 0 ? 'err' : ''}>{i % 6 === 0 ? String.fromCharCode(65 + (i / 6)) : (i * 7) % 11 === 0 ? '#REF!' : ((i * 37) % 900 + 100)}</span>)}</div>
+        </div>
+        <div class="appw">
+          <div class="app-side"><b>RD</b><i class="on"></i><i></i><i></i><i></i></div>
+          <div class="app-main">
+            <div class="app-kpis"><div><small>Ventas</small><b class="cnt" data-to="48210">S/ 48,210</b></div><div><small>Pedidos</small><b class="cnt" data-to="1284">1,284</b></div><div><small>Stock</small><b>98%</b></div></div>
+            <div class="app-chart">{[38, 52, 44, 66, 58, 74, 70, 88, 81, 94].map((h) => <i style={`--h:${h}%`}></i>)}</div>
+            <div class="app-rows"><span><b>F001-2381</b><em>SUNAT ✓</em></span><span><b>Cliente nuevo</b><em>CRM</em></span><span><b>Almacén 2</b><em>SYNC</em></span></div>
+          </div>
+        </div>
+        <span class="morph-tag mono">Excel → RD</span>
+      </div>
+      <i class="node" style="left:50%;top:100%"></i>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="arma">
+    <i class="node r" style="top:5%"></i><i class="node r" style="bottom:5%"></i>
+    <div class="wrap">
+      <div class="sec-head left">
+        <span class="badge mono">{t('b.badge')}</span>
+        <h2 class="h2" style="max-width:22ch">{t('b.title')}</h2>
+        <p class="lead">{t('b.sub')}</p>
+      </div>
+      <div class="builder">
+        <div class="mods" id="mods">
+          {MODS.map(([k, ic, on]) => (
+            <button type="button" class="mod" data-m={k} aria-pressed={on ? 'true' : 'false'}>
+              <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={ic} /></span>
+              <span class="mt"><b>{t('mod.' + k)}</b><small>{t('mod.' + k + '.d')}</small></span>
+              <span class="sw" aria-hidden="true"></span>
+            </button>
+          ))}
+        </div>
+        <div class="preview">
+          <div class="pv-bar"><i></i><i></i><i></i><span>app.tuempresa.pe</span><em><b id="mcount">3</b> {t('b.count')}</em></div>
+          <div class="pv-body">
+            <nav class="pv-side" id="pv-side">
+              {MODS.map(([k, ic]) => <span data-m={k}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={ic} />{t('mod.' + k)}</span>)}
+            </nav>
+            <div class="pv-tiles" id="pv-tiles">
+              <p class="pv-empty">{t('b.empty')}</p>
+              <div class="tile" data-m="crm"><small>{t('mod.crm')}</small><b>312</b><div class="tl-avatars"><i></i><i></i><i></i><i></i><em>+28</em></div></div>
+              <div class="tile" data-m="inv"><small>{t('mod.inv')}</small><b>12,480</b><div class="tl-bars"><i style="--w:86%"></i><i style="--w:64%"></i><i style="--w:22%" class="low"></i></div></div>
+              <div class="tile" data-m="fac"><small>{t('mod.fac')}</small><b>F001-2381</b><span class="tl-ok">✓ SUNAT</span></div>
+              <div class="tile" data-m="res"><small>{t('mod.res')}</small><b>18</b><div class="tl-cal">{Array.from({ length: 14 }, (_, i) => <i class={[1, 3, 4, 8, 11].includes(i) ? 'on' : ''}></i>)}</div></div>
+              <div class="tile" data-m="pos"><small>{t('mod.pos')}</small><b>S/ 2,140</b><span class="tl-sub">· 46 tickets</span></div>
+              <div class="tile" data-m="rep"><small>{t('mod.rep')}</small><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,26 14,22 28,24 42,15 56,17 70,9 84,11 100,3"/></svg></div>
+              <div class="tile" data-m="hr"><small>{t('mod.hr')}</small><b>24</b><span class="tl-sub">· 96% asistencia</span></div>
+              <div class="tile" data-m="app"><small>{t('mod.app')}</small><div class="tl-phone"><i></i></div></div>
+            </div>
+          </div>
+          <div class="pv-foot"><a class="btn primary" id="quote" href={waLink(t('b.msg'))} target="_blank" rel="noopener noreferrer">{t('b.quote')} →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node l" style="top:6%"></i><i class="node l" style="bottom:6%"></i>
+    <div class="wrap">
+      <div class="sec-head"><span class="badge mono">{t('d.badge')}</span><h2 class="h2">{t('d.title')}</h2></div>
+      <div class="dtabs" id="dtabs" role="tablist">
+        {['crm', 'fac', 'inv', 'res'].map((k, i) => <button type="button" role="tab" data-d={k} aria-selected={i === 0 ? 'true' : 'false'}>{t('d.' + k)}</button>)}
+      </div>
+      <div class="demo panel-card" id="demo">
+        <div class="dv on" data-d="crm">
+          <div class="kanban" id="kanban">
+            {['k.new', 'k.prop', 'k.neg', 'k.won'].map((k, i) => <div class="kcol" data-c={i}><h4>{t(k)} <em>0</em></h4><div class="kcards"></div></div>)}
+          </div>
+          <p class="cap">{t('d.cap.crm')}</p>
+        </div>
+        <div class="dv" data-d="fac">
+          <div class="inv-doc" id="invdoc">
+            <div class="id-top"><b>FACTURA ELECTRÓNICA</b><span>F001-<em id="inv-n">2382</em></span></div>
+            <div class="id-row"><span>{t('f.client')}</span><b>Comercial Andina S.A.C.</b></div>
+            <div class="id-row"><span>RUC</span><b>20601234567</b></div>
+            <div class="id-lines"><span>3 × Servicio de mantenimiento</span><span>S/ 1,200.00</span><span>IGV 18%</span><span>S/ 216.00</span></div>
+            <div class="id-row total"><span>{t('f.total')}</span><b>S/ 1,416.00</b></div>
+            <div class="id-status" id="inv-st"><i></i><span>{t('f.issue')}</span></div>
+          </div>
+          <p class="cap">{t('d.cap.fac')}</p>
+        </div>
+        <div class="dv" data-d="inv">
+          <div class="stock" id="stock">
+            {[['Polo básico M', 82], ['Zapatilla Run 42', 46], ['Gorra negra', 18], ['Casaca denim L', 64], ['Mochila urbana', 31]].map(([n, v]) => <div class="srow"><span>{n}</span><div class="sbar"><i style={`--v:${v}%`}></i></div><b>{v}</b></div>)}
+            <div class="salert" id="salert">⚠ {t('i.low')}</div>
+          </div>
+          <p class="cap">{t('d.cap.inv')}</p>
+        </div>
+        <div class="dv" data-d="res">
+          <div class="cal" id="cal">
+            {['L', 'M', 'M', 'J', 'V'].map((d) => <b>{d}</b>)}
+            {Array.from({ length: 25 }, (_, i) => <span data-i={i}>{8 + Math.floor(i / 5)}:00</span>)}
+          </div>
+          <div class="cal-toast" id="caltoast">💬 {t('r.remind')}</div>
+          <p class="cap">{t('d.cap.res')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node r" style="top:6%"></i><i class="node r" style="bottom:6%"></i>
+    <div class="wrap arch-grid">
+      <div class="sec-head left">
+        <span class="badge mono">{t('a.badge')}</span>
+        <h2 class="h2">{t('a.title')}</h2>
+        <p class="lead">{t('a.sub')}</p>
+        <ul class="stack">
+          {STACK.map(([n, k, c]) => <li style={`--c:${c}`}><i></i><b>{n}</b><span>{t('st.' + k)}</span></li>)}
+        </ul>
+      </div>
+      <div class="arch" aria-hidden="true">
+        <div class="layer"><small>{t('a.front')}</small><span>React</span><span>App móvil</span></div>
+        <div class="layer"><small>{t('a.api')}</small><span>Node.js</span><span>Laravel · PHP</span><span>Python</span></div>
+        <div class="layer"><small>{t('a.data')}</small><span>PostgreSQL</span><span>MySQL</span><span>Redis</span></div>
+        <div class="layer int"><small>{t('a.int')}</small><span>SUNAT</span><span>WhatsApp</span><span>Pasarelas</span><span>Bancos</span></div>
+        <i class="pk"></i><i class="pk"></i><i class="pk"></i>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="ahorro">
+    <i class="node l" style="top:6%"></i><i class="node l" style="bottom:6%"></i>
+    <div class="wrap calc panel-card">
+      <div class="calc-in">
+        <span class="badge mono">{t('c.badge')}</span>
+        <h2 class="h2">{t('c.title')}</h2>
+        <p class="lead">{t('c.sub')}</p>
+        <label class="rg"><span>{t('c.people')} <b id="o-p">4</b></span><input type="range" id="r-p" min="1" max="50" value="4"></label>
+        <label class="rg"><span>{t('c.hours')} <b id="o-h">12</b></span><input type="range" id="r-h" min="1" max="40" value="12"></label>
+        <label class="rg"><span>{t('c.cost')} <b id="o-c">S/ 18</b></span><input type="range" id="r-c" min="8" max="80" value="18"></label>
+      </div>
+      <div class="calc-out">
+        <small class="mono">{t('c.year')}</small>
+        <b id="sav">S/ 26,957</b>
+        <span><b id="hrs">1,498</b> {t('c.hrs')}</span>
+        <div class="coins" aria-hidden="true">{Array.from({ length: 12 }, () => <i></i>)}</div>
+        <p>{t('c.disc')}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node r" style="top:6%"></i><i class="node r" style="bottom:10%"></i>
+    <div class="wrap">
+      <div class="sec-head left"><span class="badge mono">{t('p.badge')}</span><h2 class="h2">{t('p.title')}</h2></div>
+      <div class="steps-h">{[1, 2, 3, 4].map((n) => <div class="step-h rv"><b>0{n}</b><h3>{t('p.' + n)}</h3><p>{t('p.' + n + 'd')}</p><small>{t('p.' + n + 't')}</small></div>)}</div>
+    </div>
+  </section>
+
+  <section class="gutter" style="padding-block:20px 100px">
+    <div class="wrap"><div class="cta-band">
+      <h2 class="h2">{t('x.title1')} <span class="grad-text">{t('x.title2')}</span></h2>
+      <p class="lead">{t('x.sub')}</p>
+      <div class="cta-row">
+        <a class="btn wa" href={waLink(t('wa.gen'))} target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>{t('x.wa')}</a>
+        <a class="btn primary" href={route('contacto', lang) + '?servicio=software'}>{t('x.form')} →</a>
+      </div>
+    </div></div>
+  </section>
+</Base>
+
+<script>
+  import '../scripts/software.js';
+</script>

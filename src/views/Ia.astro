@@ -1,0 +1,133 @@
+---
+/* Automatización IA — concepto "Lienzo de agentes": la IA se ve pensando en un flujo tipo n8n */
+import Base from '../layouts/Base.astro';
+import { T, FLOWS, TOOLS } from '../i18n/ia.js';
+import { useT } from '../i18n/t.js';
+import { route } from '../i18n/routes.js';
+import { waLink } from '../config.js';
+import '../styles/rd-base.css';
+import '../styles/services.css';
+import '../styles/ia.css';
+
+const { lang = 'es' } = Astro.props;
+const t = useT(T, lang);
+const L = ['es', 'en', 'it'].indexOf(lang);
+const pick = (v) => (Array.isArray(v) ? v[L] : v);
+let wi = 0;
+const W = (k, cls = '') => t(k).split(' ').map((w) => ({ w, cls, d: (0.15 + 0.08 * wi++).toFixed(2) }));
+const icons = {
+  1: '<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/>',
+  2: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+  3: '<rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 3v5M9 13h.01M15 13h.01M9 16h6"/>',
+  4: '<path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h5"/>',
+  5: '<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>',
+  6: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+};
+---
+<Base lang={lang} page="ia">
+  <section class="shero gutter ia-hero">
+    <div class="wrap">
+      <div class="copy">
+        <span class="badge mono">{t('h.badge')}</span>
+        <h1 data-split>{[...W('h.t1'), ...W('h.t2', 'grad-text')].map((x) => <><span class={'w ' + x.cls} style={`animation-delay:${x.d}s`}>{x.w}</span> </>)}</h1>
+        <p class="lead" set:html={t('h.sub')} />
+        <div class="actions">
+          <a class="btn primary" href={waLink(t('wa.try'))} target="_blank" rel="noopener noreferrer">{t('h.cta')} <span aria-hidden="true">→</span></a>
+          <a class="btn" href="#flujos">{t('h.cta2')} <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="wa-phone" aria-label="Ejemplo de conversación con un bot de WhatsApp">
+        <div class="wa-top"><span class="wa-av">AI</span><div><b>{t('chat.name')}</b><small>{t('chat.online')}</small></div></div>
+        <div class="wa-body" id="wa-body">
+          {t('chat').map(([who, txt]) => <div class={'bub ' + who}>{txt}</div>)}
+          <div class="typing" id="typing"><i></i><i></i><i></i></div>
+        </div>
+        <div class="wa-crm" id="wa-crm">✓ {t('chat.crm')}</div>
+      </div>
+      <i class="node" style="left:50%;top:100%"></i>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="flujos">
+    <i class="node r" style="top:5%"></i><i class="node r" style="bottom:5%"></i>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="badge mono">{t('w.badge')}</span>
+        <h2 class="h2">{t('w.title')}</h2>
+        <p class="lead">{t('w.sub')}</p>
+        <div class="ftabs" id="ftabs" role="tablist">{['w.t1', 'w.t2', 'w.t3'].map((k, i) => <button type="button" role="tab" data-f={i} aria-selected={i === 0 ? 'true' : 'false'}>{t(k)}</button>)}</div>
+      </div>
+      <div class="canvas" id="canvas">
+        <div class="cv-bar mono"><span class="run"><i></i>{t('w.run')}</span><span><b id="execs">1,284</b> {t('w.exec')}</span></div>
+        {FLOWS.map((f, fi) => (
+          <div class={'flow' + (fi === 0 ? ' on' : '')} data-f={fi}>
+            <svg class="edges" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+            {f.nodes.map(([id, x, y, type, title, sub]) => (
+              <div class={'nd ' + type} data-id={id} style={`--x:${x};--y:${y}`}>
+                <span class="nd-ic"></span><b>{pick(title)}</b><small>{pick(sub)}</small>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node l" style="top:6%"></i><i class="node l" style="bottom:6%"></i>
+    <div class="wrap">
+      <div class="sec-head left"><span class="badge mono">{t('u.badge')}</span><h2 class="h2" style="max-width:20ch">{t('u.title')}</h2></div>
+      <div class="grid-3">
+        {[1, 2, 3, 4, 5, 6].map((n) => (
+          <div class="feat-card rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[n]} /></span><h3>{t('u.' + n)}</h3><p>{t('u.' + n + 'd')}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node r" style="top:6%"></i><i class="node r" style="bottom:6%"></i>
+    <div class="wrap sim panel-card">
+      <div class="sim-head">
+        <span class="badge mono">{t('s.badge')}</span>
+        <h2 class="h2">{t('s.title')}</h2>
+        <div class="sim-slider">
+          <b id="s-msgs">3,000</b><span>{t('s.msgs')}</span>
+          <input type="range" id="s-range" min="200" max="20000" step="100" value="3000" aria-label={t('s.msgs')}>
+        </div>
+      </div>
+      <div class="sim-out">
+        <div><b id="s-auto">2,100</b><span>{t('s.auto')}</span></div>
+        <div><b id="s-hours">140</b><span>{t('s.hours')}</span></div>
+        <div><b>&lt; 5 s</b><span>{t('s.resp')}</span></div>
+        <div class="bubbles" id="bubbles" aria-hidden="true"></div>
+      </div>
+      <p class="sim-note">{t('s.note')}</p>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node l" style="top:10%"></i><i class="node l" style="bottom:10%"></i>
+    <div class="wrap">
+      <div class="sec-head"><span class="badge mono">{t('t.badge')}</span><h2 class="h2">{t('t.title')}</h2></div>
+      <div class="tools" aria-label={t('t.title')}>
+        <div class="tools-track">{[...TOOLS, ...TOOLS].map((x) => <span>{x}</span>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gutter" style="padding-block:20px 100px">
+    <div class="wrap"><div class="cta-band">
+      <h2 class="h2">{t('x.title1')} <span class="grad-text">{t('x.title2')}</span></h2>
+      <p class="lead">{t('x.sub')}</p>
+      <div class="cta-row">
+        <a class="btn wa" href={waLink(t('wa.try'))} target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>{t('x.wa')}</a>
+        <a class="btn primary" href={route('contacto', lang) + '?servicio=ia'}>{t('x.form')} →</a>
+      </div>
+    </div></div>
+  </section>
+</Base>
+
+<script>
+  import '../scripts/ia.js';
+</script>

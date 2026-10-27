@@ -1,0 +1,8 @@
+# Solo se puede ejecutar contacto.php en esta carpeta
+Options -Indexes
+<FilesMatch "^(?!contacto\.php$).*$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_headers.c>
+  Header always set Cache-Control "no-store"
+</IfModule>

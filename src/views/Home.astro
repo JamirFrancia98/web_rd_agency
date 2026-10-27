@@ -1,0 +1,17 @@
+---
+/* Página: home. El markup vive en src/markup/home.html, los textos en src/i18n/home.js,
+   los estilos en src/styles/home.css y la interacción en src/scripts/home.js */
+import Base from '../layouts/Base.astro';
+import markup from '../markup/home.html?raw';
+import { T } from '../i18n/home.js';
+import '../styles/home.css';
+
+const { lang = 'es' } = Astro.props;
+---
+<Base lang={lang} page="home" dict={T} spine={true}>
+  <Fragment set:html={markup} />
+</Base>
+
+<script>
+  import '../scripts/home.js';
+</script>

@@ -1,0 +1,17 @@
+---
+/* Página: portafolio. El markup vive en src/markup/portafolio.html, los textos en src/i18n/portafolio.js,
+   los estilos en src/styles/portafolio.css y la interacción en src/scripts/portafolio.js */
+import Base from '../layouts/Base.astro';
+import markup from '../markup/portafolio.html?raw';
+import { T } from '../i18n/portafolio.js';
+import '../styles/portafolio.css';
+
+const { lang = 'es' } = Astro.props;
+---
+<Base lang={lang} page="portafolio" dict={T} spine={false}>
+  <Fragment set:html={markup} />
+</Base>
+
+<script>
+  import '../scripts/portafolio.js';
+</script>

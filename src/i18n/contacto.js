@@ -1,0 +1,58 @@
+/* Textos de la página Contacto (ES / EN / IT) */
+export const T = {
+  'h.badge': ['00 // Contacto directo', '00 // Direct contact', '00 // Contatto diretto'],
+  'h.t1': ['Conversemos sobre', 'Let’s talk about', 'Parliamo del'],
+  'h.t2': ['tu proyecto.', 'your project.', 'tuo progetto.'],
+  'h.sub': ['Respondemos el mismo día hábil. Sin intermediarios comerciales, directo con nuestro equipo técnico de ingeniería y arquitectura.', 'We reply the same business day. No sales middlemen, straight to our engineering and architecture team.', 'Rispondiamo nello stesso giorno lavorativo. Niente commerciali, direttamente con il nostro team di ingegneria e architettura.'],
+  'h.c1': ['Respuesta media: < 2h hábiles', 'Average reply: < 2 business hours', 'Risposta media: < 2 ore lavorative'],
+  'h.c2': ['NDA bilateral bajo solicitud', 'Mutual NDA on request', 'NDA bilaterale su richiesta'],
+  's.label': ['01 // Mensaje directo & canales', '01 // Direct message & channels', '01 // Messaggio diretto & canali'],
+
+  'f.title': ['Envíanos los detalles de tu proyecto', 'Send us your project details', 'Inviaci i dettagli del progetto'],
+  'f.sub': ['Te entregamos diagnóstico y propuesta preliminar sin fricciones.', 'We’ll send a diagnosis and a first proposal, no strings attached.', 'Ti inviamo diagnosi e proposta preliminare, senza impegno.'],
+  'f.name': ['Nombre completo', 'Full name', 'Nome e cognome'], 'f.name.ph': ['Ej. Roberto Mendoza', 'e.g. Robert Mendoza', 'Es. Roberto Mendoza'],
+  'f.company': ['Empresa u organización', 'Company or organisation', 'Azienda o organizzazione'], 'f.company.ph': ['Ej. Logix Corp', 'e.g. Logix Corp', 'Es. Logix Corp'],
+  'f.email': ['Correo corporativo', 'Work email', 'Email aziendale'], 'f.email.ph': ['roberto@empresa.com', 'robert@company.com', 'roberto@azienda.com'],
+  'f.phone': ['Teléfono / WhatsApp', 'Phone / WhatsApp', 'Telefono / WhatsApp'], 'f.phone.ph': ['+51 999 000 000', '+51 999 000 000', '+51 999 000 000'],
+  'f.service': ['Servicio de interés', 'Service of interest', 'Servizio di interesse'],
+  'f.budget': ['Presupuesto aproximado', 'Approximate budget', 'Budget indicativo'],
+  'f.msg': ['Mensaje o requerimientos clave', 'Message or key requirements', 'Messaggio o requisiti chiave'], 'f.msg.ph': ['Cuéntanos sobre los objetivos, alcance y plazos de tu iniciativa…', 'Tell us about the goals, scope and timing of your project…', 'Raccontaci obiettivi, ambito e tempi del progetto…'],
+  'f.send': ['Enviar mensaje', 'Send message', 'Invia messaggio'], 'f.sending': ['Enviando…', 'Sending…', 'Invio…'],
+  'f.req': ['Obligatorio', 'Required', 'Obbligatorio'],
+  'f.ok.t': ['¡Mensaje recibido!', 'Message received!', 'Messaggio ricevuto!'],
+  'f.ok.d': ['Gracias. Un ingeniero de nuestro equipo te escribirá hoy mismo en horario hábil.', 'Thank you. An engineer from our team will write to you today during business hours.', 'Grazie. Un ingegnere del nostro team ti scriverà oggi in orario lavorativo.'],
+  'f.again': ['Enviar otro mensaje', 'Send another message', 'Invia un altro messaggio'],
+  'f.err.invalid': ['Revisa los campos marcados en rojo.', 'Please check the fields marked in red.', 'Controlla i campi in rosso.'],
+  'f.err.rate': ['Recibimos varios mensajes desde tu conexión. Escríbenos por WhatsApp y te atendemos al momento.', 'We’ve received several messages from your connection. Message us on WhatsApp and we’ll help right away.', 'Abbiamo ricevuto diversi messaggi dalla tua connessione. Scrivici su WhatsApp e ti rispondiamo subito.'],
+  'f.err.net': ['No pudimos enviar el mensaje. Inténtalo de nuevo o escríbenos por WhatsApp.', 'We couldn’t send your message. Try again or message us on WhatsApp.', 'Non siamo riusciti a inviare il messaggio. Riprova o scrivici su WhatsApp.'],
+  'f.privacy': ['Usamos tus datos solo para responderte. No los compartimos con nadie.', 'We only use your details to reply. We never share them.', 'Usiamo i tuoi dati solo per risponderti. Non li condividiamo.'],
+  'svc': [
+    ['Diseño web & e-commerce', 'Software a medida & ERP', 'Hosting & correo', 'Automatización IA', 'Plataforma iGaming', 'Otro'],
+    ['Web design & e-commerce', 'Custom software & ERP', 'Hosting & email', 'AI automation', 'iGaming platform', 'Other'],
+    ['Web design & e-commerce', 'Software su misura & ERP', 'Hosting & email', 'Automazione IA', 'Piattaforma iGaming', 'Altro'],
+  ],
+  'bud': [
+    ['Menos de $3,000 USD', '$3,000 - $15,000 USD', '$15,000 - $35,000 USD', 'Más de $35,000 USD', 'Aún no lo sé'],
+    ['Under $3,000 USD', '$3,000 - $15,000 USD', '$15,000 - $35,000 USD', 'Over $35,000 USD', 'Not sure yet'],
+    ['Meno di $3,000 USD', '$3,000 - $15,000 USD', '$15,000 - $35,000 USD', 'Oltre $35,000 USD', 'Non lo so ancora'],
+  ],
+
+  'wa.title': ['Conversación rápida por WhatsApp', 'Quick chat on WhatsApp', 'Chat veloce su WhatsApp'],
+  'wa.sub': ['Ideal si buscas agilidad operativa o tienes preguntas técnicas preliminares. Respondemos en minutos.', 'Great if you need speed or have early technical questions. We reply within minutes.', 'Ideale se cerchi rapidità o hai domande tecniche preliminari. Rispondiamo in pochi minuti.'],
+  'wa.btn': ['Escribir por WhatsApp ahora', 'Message on WhatsApp now', 'Scrivi su WhatsApp ora'],
+  'wa.on': ['Disponible ahora', 'Available now', 'Disponibile ora'], 'wa.off': ['Fuera de horario · respondemos a las 8:00', 'Out of hours · we reply from 8:00', 'Fuori orario · rispondiamo dalle 8:00'],
+  'wa.msg': ['Hola RD, quiero conversar sobre un proyecto.', 'Hi RD, I’d like to talk about a project.', 'Ciao RD, vorrei parlare di un progetto.'],
+  'em.k': ['Email directo', 'Direct email', 'Email diretta'], 'em.copy': ['Copiar correo', 'Copy email', 'Copia email'], 'em.copied': ['¡Copiado!', 'Copied!', 'Copiato!'],
+  'ph.k': ['Teléfono / WhatsApp', 'Phone / WhatsApp', 'Telefono / WhatsApp'], 'ph.days': ['Lunes a sábado · GMT-5', 'Monday to Saturday · GMT-5', 'Lunedì–sabato · GMT-5'],
+  'hr.k': ['Horario de atención', 'Business hours', 'Orario'], 'hr.crit': ['Guardia crítica', 'Critical on-call', 'Reperibilità critica'],
+  'hr.local': ['Hora en Lima', 'Time in Lima', 'Ora a Lima'],
+
+  'q.label': ['02 // Preguntas frecuentes', '02 // Frequently asked questions', '02 // Domande frequenti'],
+  'q.title': ['Respuestas directas antes de contactar.', 'Straight answers before you reach out.', 'Risposte dirette prima di contattarci.'],
+  'q': [
+    [['¿Cobran por la primera llamada o el análisis inicial?', 'No. La primera llamada y el diagnóstico inicial son gratuitos y sin compromiso. Al final recibes una propuesta con alcance, tiempos y precio cerrado.'], ['¿Pueden firmar un acuerdo de confidencialidad (NDA) antes de conversar?', 'Sí. Firmamos un NDA bilateral antes de revisar cualquier información sensible de tu negocio. Solo pídelo en el mensaje.'], ['¿Qué tan rápido podemos iniciar el desarrollo de nuestro proyecto?', 'Normalmente arrancamos en 1 a 2 semanas después de aprobar la propuesta. Si es urgente, lo conversamos en la primera llamada.']],
+    [['Do you charge for the first call or the initial assessment?', 'No. The first call and the initial assessment are free with no commitment. Afterwards you get a proposal with scope, timeline and a fixed price.'], ['Can you sign an NDA before we talk?', 'Yes. We sign a mutual NDA before reviewing any sensitive information about your business. Just mention it in your message.'], ['How soon can development start?', 'We usually start 1 to 2 weeks after the proposal is approved. If it’s urgent, we’ll discuss it on the first call.']],
+    [['La prima call o l’analisi iniziale sono a pagamento?', 'No. La prima call e la diagnosi iniziale sono gratuite e senza impegno. Alla fine ricevi una proposta con ambito, tempi e prezzo chiuso.'], ['Potete firmare un NDA prima di parlare?', 'Sì. Firmiamo un NDA bilaterale prima di vedere qualsiasi informazione sensibile. Basta chiederlo nel messaggio.'], ['Quanto presto possiamo iniziare lo sviluppo?', 'Di solito iniziamo 1–2 settimane dopo l’approvazione della proposta. Se è urgente, ne parliamo nella prima call.']],
+  ],
+};
+export const SVC_KEYS = ['web', 'software', 'hosting', 'ia', 'igaming', 'otro'];

@@ -1,0 +1,109 @@
+---
+/* Header común: transparente sobre el hero y oscuro al hacer scroll. */
+import { UI } from '../i18n/ui.js';
+import { ROUTES, LANGS, route } from '../i18n/routes.js';
+import { waLink } from '../config.js';
+
+const { lang = 'es', page = 'home' } = Astro.props;
+const t = UI[lang];
+const link = (to) => {               // '/#s-soft' · 'portafolio' · 'igaming#plataforma'
+  if (to.startsWith('/#')) return route('home', lang) + to.slice(1);
+  const [p, hash] = to.split('#');
+  return route(p, lang) + (hash ? '#' + hash : '');
+};
+// Orden del menú: Inicio / Nosotros / Servicios / iGaming / Casos / Contacto
+const before = [['home', t.nav.home], ['nosotros', t.nav.nosotros]];
+const after = [['igaming', t.nav.igaming], ['casos', t.nav.casos]];
+// Servicios activos: por ahora solo el Portafolio 3D; el resto se activa al tener su página
+const LIVE = ['disenoweb', 'software', 'hosting', 'ia', 'portafolio'];
+const isLive = (to) => LIVE.includes(to.split('#')[0]);
+const servicesActive = ['disenoweb', 'software', 'hosting', 'ia', 'portafolio'].includes(page);
+const alt = (l) => (ROUTES[page] || ROUTES.home)[l];
+const icons = [
+  '<circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/>',
+  '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10l-2 2 2 2M16 10l2 2-2 2"/>',
+  '<rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/>',
+  '<path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="5"/>',
+  '<path d="M12 3l9 5v8l-9 5-9-5V8z"/><path d="M12 12l9-4M12 12v9M12 12L3 8"/>',
+];
+---
+<a class="skip" href="#contenido">{t.skip}</a>
+<header class="site-header" id="site-header">
+  <div class="hd">
+    <a class="hd-logo" href={route('home', lang)} aria-label="Revolution Digital"><i aria-hidden="true">R</i><span>revolution digital</span></a>
+
+    <nav class="hd-nav" aria-label="Principal">
+      {before.map(([p, label]) => <a href={route(p, lang)} aria-current={page === p ? 'page' : undefined}>{label}</a>)}
+      <div class="dd">
+        <button type="button" class="dd-btn" aria-expanded="false" aria-haspopup="true" aria-current={servicesActive ? 'page' : undefined}>{t.nav.services} <span class="hd-caret" aria-hidden="true">▾</span></button>
+        <div class="dd-menu" role="menu">
+          {t.services.map(([title, desc, to], i) => isLive(to) ? (
+            <a class="dd-item" role="menuitem" href={link(to)}>
+              <span class="dd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[i]} /></span>
+              <b>{title}</b><small>{desc}</small>
+            </a>
+          ) : (
+            <span class="dd-item is-soon" role="menuitem" aria-disabled="true">
+              <span class="dd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[i]} /></span>
+              <b>{title} <em>{t.soon}</em></b><small>{desc}</small>
+            </span>
+          ))}
+        </div>
+      </div>
+      {after.map(([p, label]) => <a href={route(p, lang)} aria-current={page === p ? 'page' : undefined}>{label}</a>)}
+      <a href={route('contacto', lang)} aria-current={page === 'contacto' ? 'page' : undefined}>{t.nav.contact}</a>
+    </nav>
+
+    <div class="hd-right">
+      <div class="hd-lang" role="group" aria-label={t.langLabel}>
+        {LANGS.map((l, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true">/</span>}
+            <a href={alt(l)} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{l.toUpperCase()}</a>
+          </>
+        ))}
+      </div>
+      <button type="button" class="hd-burger" aria-expanded="false" aria-controls="hd-panel" aria-label={t.menu} data-open={t.menu} data-close={t.close}><i></i><i></i></button>
+    </div>
+  </div>
+
+  <div class="hd-panel" id="hd-panel">
+    <nav aria-label="Menú móvil">
+      {before.map(([p, label]) => <a href={route(p, lang)} aria-current={page === p ? 'page' : undefined}>{label}</a>)}
+      <p class="hd-panel-k">{t.nav.services}</p>
+      {t.services.map(([title, , to]) => isLive(to)
+        ? <a class="sub" href={link(to)}>{title}</a>
+        : <span class="sub is-soon" aria-disabled="true">{title} <em>{t.soon}</em></span>)}
+      {after.map(([p, label]) => <a href={route(p, lang)} aria-current={page === p ? 'page' : undefined}>{label}</a>)}
+      <a href={route('contacto', lang)} aria-current={page === 'contacto' ? 'page' : undefined}>{t.nav.contact}</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const h = document.getElementById('site-header');
+  if (h) {
+    const onScroll = () => h.classList.toggle('scrolled', window.scrollY > 24);
+    onScroll();
+    addEventListener('scroll', onScroll, { passive: true });
+
+    // menú móvil
+    const burger = h.querySelector('.hd-burger');
+    const setMenu = (open) => {
+      h.classList.toggle('menu-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? burger.dataset.close : burger.dataset.open);
+      document.documentElement.classList.toggle('menu-lock', open);
+    };
+    burger.addEventListener('click', () => setMenu(!h.classList.contains('menu-open')));
+    h.querySelectorAll('.hd-panel a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+
+    // desplegable "Servicios" (hover en escritorio, toque en móvil y teclado)
+    const dd = h.querySelector('.dd'), ddBtn = h.querySelector('.dd-btn');
+    const setDd = (open) => { dd.classList.toggle('open', open); ddBtn.setAttribute('aria-expanded', String(open)); };
+    ddBtn.addEventListener('click', (e) => { e.stopPropagation(); setDd(!dd.classList.contains('open')); });
+    document.addEventListener('click', (e) => { if (!dd.contains(e.target)) setDd(false); });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') { setDd(false); setMenu(false); } });
+    matchMedia('(min-width: 981px)').addEventListener('change', (m) => { if (m.matches) setMenu(false); });
+  }
+</script>

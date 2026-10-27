@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import { UI } from '../i18n/ui.js';
+const [h, p, back] = UI.es.nf;
+---
+<Base lang="es" page="404" spine={false}>
+  <section class="nf">
+    <span class="nf-code">404</span>
+    <h1>{h}</h1>
+    <p>{p}</p>
+    <a href="/">{back} →</a>
+  </section>
+</Base>
+
+<style>
+  .nf{min-height:80vh;display:grid;place-content:center;justify-items:center;gap:16px;text-align:center;padding:140px 20px 80px}
+  .nf-code{font-family:var(--mono);font-size:clamp(70px,14vw,150px);font-weight:700;line-height:1;background:linear-gradient(90deg,#2f5bff,#9b30ff,#e21cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{margin:0;font-size:clamp(26px,4vw,40px);letter-spacing:-.03em}
+  p{margin:0;color:var(--muted)}
+  a{margin-top:10px;padding:12px 18px;border-radius:10px;background:linear-gradient(90deg,#2f5bff,#e21cff);color:#fff;font-weight:600;text-decoration:none}
+</style>

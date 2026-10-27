@@ -1,0 +1,200 @@
+---
+/* Diseño web & e-commerce — concepto "La web que vende": cifras reales de ventas como protagonistas */
+import Base from '../layouts/Base.astro';
+import { T } from '../i18n/disenoweb.js';
+import { useT } from '../i18n/t.js';
+import { route } from '../i18n/routes.js';
+import { waLink } from '../config.js';
+import { STORES, TOTAL, IMPROVE } from '../data/ventas.js';
+import '../styles/rd-base.css';
+import '../styles/services.css';
+import '../styles/disenoweb.css';
+
+const { lang = 'es' } = Astro.props;
+const t = useT(T, lang);
+const words = (k, cls = '') => t(k).split(' ');
+let wi = 0;
+// mini gráfico del hero: ventas acumuladas mes a mes de ambas tiendas
+const series = [];
+for (const y of [2022, 2023, 2024, 2025]) for (let m = 0; m < 12; m++) series.push(STORES.reduce((a, s) => a + (s.years[y]?.months[m] || 0), 0));
+let acc = 0; const cum = series.map((v) => (acc += v));
+const W = 400, H = 120, max = cum[cum.length - 1];
+const pts = cum.map((v, i) => `${(i / (cum.length - 1) * W).toFixed(1)},${(H - v / max * (H - 8)).toFixed(1)}`);
+const area = `M0,${H} L${pts.join(' L')} L${W},${H} Z`;
+const line = `M${pts.join(' L')}`;
+const fmt = (n) => 'S/ ' + Math.round(n).toLocaleString('en-US');
+const icons = {
+  1: '<path d="M4 5h16v11H4z"/><path d="M8 20h8M12 16v4"/>',
+  2: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+  3: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/>',
+  4: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/>',
+  5: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+  6: '<path d="M3 11l18-7-7 18-2-8z"/>',
+};
+---
+<Base lang={lang} page="disenoweb">
+  <section class="shero gutter dw-hero">
+    <div class="wrap">
+      <div class="copy">
+        <span class="badge mono">{t('h.badge')}</span>
+        <h1 data-split>
+          {words('h.t1').map((w) => <><span class="w" style={`animation-delay:${(0.15 + 0.08 * wi++).toFixed(2)}s`}>{w}</span> </>)}
+          {words('h.t2').map((w) => <><span class="w grad-text" style={`animation-delay:${(0.15 + 0.08 * wi++).toFixed(2)}s`}>{w}</span> </>)}
+        </h1>
+        <p class="lead" set:html={t('h.sub')} />
+        <div class="chips-row">
+          <span class="chip" style="--c:#21759b"><i></i>WordPress</span>
+          <span class="chip" style="--c:#7f54b3"><i></i>WooCommerce</span>
+          <span class="chip" style="--c:#95bf47"><i></i>Shopify</span>
+          <span class="chip" style="--c:#df0067"><i></i>PrestaShop</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href={waLink(t('wa.quote'))} target="_blank" rel="noopener noreferrer">{t('h.cta')} <span aria-hidden="true">→</span></a>
+          <a class="btn" href="#resultados">{t('h.cta2')} <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+
+      <div class="rev" id="rev">
+        <div class="rev-card">
+          <span class="mono kicker">{t('h.src')}</span>
+          <b class="rev-num" id="rev-num" data-to={Math.round(TOTAL)}>{fmt(TOTAL)}</b>
+          <span class="rev-lbl">{t('h.counter')}</span>
+          <svg class="rev-chart" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="dwg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9b30ff" stop-opacity=".55"/><stop offset="1" stop-color="#9b30ff" stop-opacity="0"/></linearGradient></defs>
+            <path class="rev-area" d={area} fill="url(#dwg)"/>
+            <path class="rev-line" d={line} pathLength="1"/>
+          </svg>
+          <div class="rev-axis mono"><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div>
+        </div>
+        <div class="order" id="order" aria-hidden="true"><span class="ok">✓</span><div><small>{t('h.order')}</small><b id="order-amt">S/ 189.00</b></div></div>
+      </div>
+      <i class="node" style="left:50%;top:100%"></i>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="resultados">
+    <i class="node l" style="top:6%"></i><i class="node l" style="bottom:4%"></i>
+    <div class="wrap">
+      <div class="sec-head left">
+        <span class="badge mono">{t('r.badge')}</span>
+        <h2 class="h2" style="max-width:20ch">{t('r.title')}</h2>
+        <p class="lead">{t('r.sub')}</p>
+      </div>
+      <div class="sales panel-card" id="sales">
+        <div class="sales-top">
+          <div class="st-tabs" role="tablist" id="st-tabs">
+            {STORES.map((s, i) => <button type="button" role="tab" data-store={i} aria-selected={i === 0 ? 'true' : 'false'}>{s.name[lang]}</button>)}
+          </div>
+          <div class="yr-tabs" id="yr-tabs"></div>
+        </div>
+        <div class="sales-kpis">
+          <div><small>{t('r.total')}</small><b id="k-total">—</b></div>
+          <div><small>{t('r.best')}</small><b id="k-best">—</b></div>
+          <div><small>{t('r.avg')}</small><b id="k-avg">—</b></div>
+          <div class="hl"><b id="k-hl">—</b><small id="k-hl-l">—</small></div>
+        </div>
+        <div class="chart-wrap"><svg id="chart" role="img" aria-label={t('r.note')}></svg><div class="tip" id="tip" hidden></div></div>
+        <p class="note">{t('r.note')}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node r" style="top:6%"></i><i class="node r" style="bottom:6%"></i>
+    <div class="wrap ba-grid">
+      <div class="sec-head left">
+        <span class="badge mono">{t('b.badge')}</span>
+        <h2 class="h2">{t('b.title')}</h2>
+        <p class="lead" set:html={t('b.sub')} />
+        <div class="mrows">
+          {IMPROVE.map((m) => (
+            <div class="mrow"><span>{t('m.' + m.k)}</span><s>{m.before}</s><b>{m.after}</b><em>{m.delta}</em></div>
+          ))}
+        </div>
+      </div>
+      <div class="ba" id="ba" style="--pos:50%">
+        <div class="site old" aria-hidden="true">
+          <div class="o-top">MI TIENDA ONLINE :: Bienvenidos!!!</div>
+          <div class="o-marq">★ OFERTAS ★ OFERTAS ★ ENVÍO GRATIS ★ OFERTAS ★</div>
+          <div class="o-body">
+            <div class="o-side"><u>Inicio</u><u>Productos</u><u>Nosotros</u><u>Contacto</u><u>Blog</u><u>Ofertas</u></div>
+            <div class="o-main"><p>Somos una empresa líder con más de 10 años en el mercado ofreciendo productos de calidad...</p><div class="o-img"></div><div class="o-img"></div><span class="o-btn">CLICK AQUI</span></div>
+          </div>
+          <span class="tagba mono">{t('b.before')} · 6.8s</span>
+        </div>
+        <div class="site new" aria-hidden="true">
+          <div class="n-nav"><i></i><span></span><span></span><span></span><em>Shop</em></div>
+          <div class="n-hero"><div><b>Nueva colección</b><p>Envío gratis desde S/ 99</p><span class="n-btn">Comprar ahora</span></div><div class="n-pic"></div></div>
+          <div class="n-grid"><i></i><i></i><i></i><i></i></div>
+          <span class="tagba mono">{t('b.after')} · 0.9s</span>
+        </div>
+        <div class="ba-handle" aria-hidden="true"><span>⟷</span></div>
+        <input type="range" min="0" max="100" value="50" id="ba-range" aria-label={t('b.drag')}>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node l" style="top:6%"></i><i class="node l" style="bottom:6%"></i>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="badge mono">{t('p.badge')}</span>
+        <h2 class="h2" style="max-width:22ch">{t('p.title')}</h2>
+      </div>
+      <div class="quiz" id="quiz">
+        {['q.1', 'q.2', 'q.3'].map((q, i) => (
+          <div class="qrow" data-q={i}><span>{t(q)}</span><div><button type="button" data-v="1" aria-pressed="false">{t('yes')}</button><button type="button" data-v="0" aria-pressed="false">{t('no')}</button></div></div>
+        ))}
+      </div>
+      <div class="plats" id="plats">
+        <article class="plat" data-p="wp" style="--c:#21759b"><span class="pl-tag mono">{t('pl.wp.tag')}</span><span class="pl-rec mono">{t('rec')}</span><h3>{t('pl.wp.t')}</h3><p>{t('pl.wp.d')}</p></article>
+        <article class="plat" data-p="sh" style="--c:#95bf47"><span class="pl-rec mono">{t('rec')}</span><h3>{t('pl.sh.t')}</h3><p>{t('pl.sh.d')}</p></article>
+        <article class="plat" data-p="ps" style="--c:#df0067"><span class="pl-rec mono">{t('rec')}</span><h3>{t('pl.ps.t')}</h3><p>{t('pl.ps.d')}</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node r" style="top:6%"></i><i class="node r" style="bottom:6%"></i>
+    <div class="wrap">
+      <div class="sec-head left"><span class="badge mono">{t('i.badge')}</span><h2 class="h2">{t('i.title')}</h2></div>
+      <div class="grid-3">
+        {[1, 2, 3, 4, 5, 6].map((n) => (
+          <div class="feat-card rv">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[n]} /></span>
+            <h3>{t('i.' + n)}</h3><p>{t('i.' + n + 'd')}</p>
+            {n === 6 && <span class="tag-soft">{t('i.6t')}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node l" style="top:6%"></i><i class="node l" style="bottom:10%"></i>
+    <div class="wrap">
+      <div class="sec-head left"><span class="badge mono">{t('s.badge')}</span><h2 class="h2">{t('s.title')}</h2></div>
+      <div class="steps-h">
+        {[1, 2, 3, 4].map((n) => <div class="step-h rv"><b>0{n}</b><h3>{t('s.' + n)}</h3><p>{t('s.' + n + 'd')}</p><small>{t('s.' + n + 't')}</small></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="gutter" style="padding-block:20px 100px">
+    <div class="wrap">
+      <div class="cta-band">
+        <h2 class="h2">{t('c.title1')} <span class="grad-text">{t('c.title2')}</span></h2>
+        <p class="lead">{t('c.sub')}</p>
+        <div class="cta-row">
+          <a class="btn wa" href={waLink(t('wa.quote'))} target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>{t('c.wa')}</a>
+          <a class="btn primary" href={route('contacto', lang) + '?servicio=web'}>{t('c.form')} →</a>
+          <a class="btn" href={route('portafolio', lang)}>{t('c.port')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import '../scripts/disenoweb.js';
+</script>

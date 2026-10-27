@@ -1,0 +1,18 @@
+---
+/* Página: igaming. El markup vive en src/markup/igaming.html, los textos en src/i18n/igaming.js,
+   los estilos en src/styles/igaming.css y la interacción en src/scripts/igaming.js */
+import Base from '../layouts/Base.astro';
+import markup from '../markup/igaming.html?raw';
+import { T } from '../i18n/igaming.js';
+import '../styles/rd-base.css';
+import '../styles/igaming.css';
+
+const { lang = 'es' } = Astro.props;
+---
+<Base lang={lang} page="igaming" dict={T} spine={true}>
+  <Fragment set:html={markup} />
+</Base>
+
+<script>
+  import '../scripts/igaming.js';
+</script>

@@ -1,0 +1,18 @@
+---
+/* Página: casos. El markup vive en src/markup/casos.html, los textos en src/i18n/casos.js,
+   los estilos en src/styles/casos.css y la interacción en src/scripts/casos.js */
+import Base from '../layouts/Base.astro';
+import markup from '../markup/casos.html?raw';
+import { T } from '../i18n/casos.js';
+import '../styles/rd-base.css';
+import '../styles/casos.css';
+
+const { lang = 'es' } = Astro.props;
+---
+<Base lang={lang} page="casos" dict={T} spine={true}>
+  <Fragment set:html={markup} />
+</Base>
+
+<script>
+  import '../scripts/casos.js';
+</script>

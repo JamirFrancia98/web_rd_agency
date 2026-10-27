@@ -1,0 +1,13 @@
+---
+/* La señal RD: línea de luz que recorre la página con el scroll. El JS de cada página la dibuja. */
+---
+<svg id="spine" aria-hidden="true">
+  <defs>
+    <linearGradient id="sg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+      <stop offset="0" stop-color="#2f5bff"/><stop offset=".35" stop-color="#9b30ff"/><stop offset=".7" stop-color="#e21cff"/><stop offset="1" stop-color="#9b30ff"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <path class="ghost"/><path class="live"/>
+  <circle class="halo" r="14"/><circle class="head" r="4"/>
+</svg>

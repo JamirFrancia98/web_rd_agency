@@ -1,0 +1,148 @@
+---
+/* Hosting — concepto "Panel de estado": la página se lee como un status page en vivo */
+import Base from '../layouts/Base.astro';
+import { T } from '../i18n/hosting.js';
+import { useT } from '../i18n/t.js';
+import { route } from '../i18n/routes.js';
+import { waLink } from '../config.js';
+import { PLANS, CURRENCY } from '../data/hosting.js';
+import '../styles/rd-base.css';
+import '../styles/services.css';
+import '../styles/hosting.css';
+
+const { lang = 'es' } = Astro.props;
+const t = useT(T, lang);
+let wi = 0;
+const W = (k, cls = '') => t(k).split(' ').map((w) => ({ w, cls, d: (0.15 + 0.08 * wi++).toFixed(2) }));
+// 90 días de disponibilidad: casi todo verde, 2 días con incidencia menor
+const days = Array.from({ length: 90 }, (_, i) => (i === 23 || i === 61 ? 'warn' : 'ok'));
+const icons = [
+  '<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/>',
+  '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+  '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 3"/>',
+  '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+];
+---
+<Base lang={lang} page="hosting">
+  <section class="shero gutter hs-hero">
+    <div class="wrap">
+      <div class="copy">
+        <span class="badge mono">{t('h.badge')}</span>
+        <h1 data-split>{[...W('h.t1'), ...W('h.t2', 'grad-text')].map((x) => <><span class={'w ' + x.cls} style={`animation-delay:${x.d}s`}>{x.w}</span> </>)}</h1>
+        <p class="lead" set:html={t('h.sub')} />
+        <div class="actions">
+          <a class="btn primary" href="#planes">{t('h.cta')} <span aria-hidden="true">↓</span></a>
+          <a class="btn" href={waLink(t('wa.mig'))} target="_blank" rel="noopener noreferrer">{t('h.cta2')}</a>
+        </div>
+      </div>
+      <div class="status" id="status">
+        <div class="st-head"><span class="live-dot"></span><b>{t('st.ok')}</b><em class="mono" id="clock">--:--:--</em></div>
+        <div class="st-svcs">
+          {t('st.svc').map((s, i) => <div class="svc-row"><span>{s}</span><i class="pulse-ok"></i><b class="mono">{['99.99%', '99.98%', '100%', '100%'][i]}</b></div>)}
+        </div>
+        <div class="st-up">
+          <div class="st-up-h"><small>{t('st.uptime')}</small><b class="mono">99.98%</b></div>
+          <div class="days">{days.map((d) => <i class={d}></i>)}</div>
+          <div class="st-up-f mono"><span>{t('st.ago')}</span><span>{t('st.today')}</span></div>
+        </div>
+        <div class="st-resp">
+          <div><small>{t('st.resp')}</small><b class="mono"><span id="ms">142</span> ms</b></div>
+          <svg viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><polyline id="spark" points=""/></svg>
+        </div>
+        <div class="st-support"><span class="avatar">RD</span><span>{t('st.support')} · Lima</span><i class="live-dot"></i></div>
+      </div>
+      <i class="node" style="left:50%;top:100%"></i>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="planes">
+    <i class="node l" style="top:5%"></i><i class="node l" style="bottom:5%"></i>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="badge mono">{t('p.badge')}</span>
+        <h2 class="h2">{t('p.title')}</h2>
+        <div class="billing" role="group" id="billing">
+          <button type="button" data-b="m" aria-pressed="true">{t('p.month')}</button>
+          <button type="button" data-b="y" aria-pressed="false">{t('p.year')} <em>{t('p.save')}</em></button>
+        </div>
+      </div>
+      <div class="plans">
+        {PLANS.map((p) => (
+          <article class={'plan' + (p.featured ? ' featured' : '')}>
+            {p.featured && <span class="pop mono">{t('p.pop')}</span>}
+            <h3>{p.name[lang]}</h3>
+            <p class="for">{p.for[lang]}</p>
+            <div class="price"><small>{CURRENCY}</small><b data-m={p.monthly.toFixed(2)} data-y={p.yearly.toFixed(2)}>{p.monthly.toFixed(2)}</b><span>{t('p.per')}</span></div>
+            <p class="billed" data-yonly>{t('p.billed')}</p>
+            <ul>{p.feats[lang].map((f) => <li>{f}</li>)}</ul>
+            <a class={'btn' + (p.featured ? ' primary' : '')} href={waLink(t('wa.plan') + p.name[lang])} target="_blank" rel="noopener noreferrer">{t('p.pick')} →</a>
+          </article>
+        ))}
+      </div>
+      <p class="plans-note">{t('p.all')}</p>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node r" style="top:6%"></i><i class="node r" style="bottom:6%"></i>
+    <div class="wrap">
+      <div class="sec-head left"><span class="badge mono">{t('i.badge')}</span><h2 class="h2" style="max-width:20ch">{t('i.title')}</h2></div>
+      <div class="grid-4">
+        {[1, 2, 3, 4].map((n) => (
+          <div class="feat-card rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[n - 1]} /></span><h3>{t('i.' + n)}</h3><p>{t('i.' + n + 'd')}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node l" style="top:6%"></i><i class="node l" style="bottom:6%"></i>
+    <div class="wrap">
+      <div class="sec-head"><span class="badge mono">{t('m.badge')}</span><h2 class="h2" style="max-width:20ch">{t('m.title')}</h2></div>
+      <div class="mig panel-card" id="mig">
+        <div class="srv old"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg><span>{t('m.from')}</span></div>
+        <div class="pipe"><i class="pkt"></i><i class="pkt"></i><i class="pkt"></i>
+          <ol class="msteps">{t('m.s').map((s) => <li>{s}</li>)}</ol>
+        </div>
+        <div class="srv new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg><span>{t('m.to')}</span></div>
+        <p class="mig-done" id="mig-done">✓ {t('m.done')}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node r" style="top:6%"></i><i class="node r" style="bottom:6%"></i>
+    <div class="wrap mail-grid">
+      <div class="sec-head left"><span class="badge mono">{t('e.badge')}</span><h2 class="h2">{t('e.title')}</h2><p class="lead">{t('e.sub')}</p></div>
+      <div class="devices" aria-hidden="true">
+        <div class="laptop"><div class="lp-bar"><b>{t('e.inbox')}</b><span>ventas@tuempresa.com</span></div>
+          <div class="mails" id="mails">{t('e.m').map((m, i) => <div class="mail"><i style={`--h:${i * 70}`}></i><span><b>{m}</b><small>cliente{i + 1}@correo.com</small></span><em>{['09:41', '09:12', '08:55', 'Ayer'][i]}</em></div>)}</div>
+        </div>
+        <div class="phone2"><div class="ph-notch"></div><div class="ph-notif" id="notif"><b>ventas@tuempresa.com</b><span>{t('e.m')[0]}</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter">
+    <i class="node l" style="top:10%"></i>
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2">{t('f.title')}</h2></div>
+      <div class="faq">{t('f.q').map(([q, a], i) => <details open={i === 0}><summary>{q}</summary><p>{a}</p></details>)}</div>
+    </div>
+  </section>
+
+  <section class="gutter" style="padding-block:20px 100px">
+    <div class="wrap"><div class="cta-band">
+      <h2 class="h2">{t('x.title1')} <span class="grad-text">{t('x.title2')}</span></h2>
+      <p class="lead">{t('x.sub')}</p>
+      <div class="cta-row">
+        <a class="btn wa" href={waLink(t('wa.mig'))} target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>{t('x.wa')}</a>
+        <a class="btn primary" href={route('contacto', lang) + '?servicio=hosting'}>{t('x.form')} →</a>
+      </div>
+    </div></div>
+  </section>
+</Base>
+
+<script>
+  import '../scripts/hosting.js';
+</script>

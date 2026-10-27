@@ -1,0 +1,180 @@
+<!-- La señal: se genera por JS a partir de los puntos .node -->
+  <!-- HERO -->
+  <section class="hero gutter" id="hero">
+    <canvas id="hero-gl" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1 id="h1" data-ssr-split="hero.t1|hero.t2:grad-text|hero.t3"></h1>
+      <p class="lead" data-i18n="hero.sub">Software, diseño, inteligencia artificial y hosting con un solo equipo de alto impacto.</p>
+      <div class="tabs" id="tabs">
+        <button class="tab" type="button" data-go="s-design"><span class="mono"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg><span>01 // <span data-i18n="t.design">Diseño</span></span></span><span class="arr">↓</span></button>
+        <button class="tab" type="button" data-go="s-soft"><span class="mono"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10l-2 2 2 2M16 10l2 2-2 2"/></svg><span>02 // Software</span></span><span class="arr">↓</span></button>
+        <button class="tab" type="button" data-go="s-host"><span class="mono"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg><span>03 // Hosting</span></span><span class="arr">↓</span></button>
+        <button class="tab" type="button" data-go="s-ia"><span class="mono"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="5"/></svg><span>04 // <span data-i18n="t.ia">Automatización IA</span></span></span><span class="arr">↓</span></button>
+      </div>
+    </div>
+    <i class="node" style="bottom:40px;--mx:9px"></i>
+  </section>
+
+  <!-- 01 DISEÑO -->
+  <section class="svc s-design gutter" id="s-design">
+    <i class="node nd" style="top:60px;--x:50%"></i><i class="node nm" style="top:22px;--mx:calc(100% - 11px)"></i><i class="node nm" style="bottom:22px;--mx:calc(100% - 11px)"></i>
+    <div class="wrap">
+      <div class="mock" id="mock" aria-label="Diseño pasando de wireframe a versión final">
+        <span class="frame-tag">Frame · Landing 1440</span>
+        <div class="ml wire" id="mock-wire"></div>
+        <div class="ml final" id="mock-final"></div>
+        <div class="scan" id="scan"></div>
+        <div class="fcur" id="fcur"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 2l16 9-7 2-3 7z"/></svg><span>RD</span></div>
+      </div>
+      <div class="copy">
+        <span class="badge mono" data-i18n="d.badge">01 // Experiencia & marca</span>
+        <h2 class="h2"><span data-i18n="d.t1">Diseño que se ve bien y</span> <span class="grad-text" data-i18n="d.t2">vende mejor.</span></h2>
+        <div class="feats" id="feats">
+          <div class="feat"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><b data-i18n="d.f1">Conversión acelerada</b><small data-i18n="d.f1d">Cada pantalla guía al visitante hacia la compra o el contacto.</small></div>
+          <div class="feat"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></span><b data-i18n="d.f2">Consistencia total</b><small data-i18n="d.f2d">Un mismo sistema visual en web, app y redes.</small></div>
+          <div class="feat"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M12 7v6l-3 7M12 13l3 7M7 10h10"/></svg></span><b data-i18n="d.f3">Fácil de usar</b><small data-i18n="d.f3d">Interfaces claras que cualquier persona entiende al instante.</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 SOFTWARE -->
+  <section class="svc rev s-soft gutter" id="s-soft">
+    <i class="node nd" style="top:50%;--x:50%"></i><i class="node nm" style="top:22px;--mx:9px"></i><i class="node nm" style="bottom:22px;--mx:9px"></i>
+    <div class="wrap">
+      <div class="ide" id="ide">
+        <div class="ide-bar"><i></i><i></i><i></i><span>erp.config.ts</span></div>
+        <div class="code" id="code"></div>
+        <span class="caret" id="caret"></span>
+        <div class="compile" id="compile"><span data-i18n="s.compiling">Compilando módulos…</span><div class="pb"><i id="pb"></i></div></div>
+        <div class="app">
+          <div class="app-h"><span>ERP · Tu Empresa</span><span class="live" data-i18n="s.live">En producción</span></div>
+          <div class="kpis">
+            <div class="kpi"><small data-i18n="s.k1">Inventario</small><b>12.480</b></div>
+            <div class="kpi"><small data-i18n="s.k2">Ventas hoy</small><b>$8.2k</b></div>
+            <div class="kpi"><small data-i18n="s.k3">Facturas</small><b>312</b></div>
+          </div>
+          <div class="app-b">
+            <div class="chart"><i style="--h:42%"></i><i style="--h:58%"></i><i style="--h:50%"></i><i style="--h:72%"></i><i style="--h:64%"></i><i style="--h:88%"></i><i style="--h:80%"></i></div>
+            <div class="rows">
+              <div><b data-i18n="s.r1">Pedido #4092</b><em>OK</em></div>
+              <div><b data-i18n="s.r2">Stock almacén 2</b><em>SYNC</em></div>
+              <div><b data-i18n="s.r3">Factura F-0312</b><em>OK</em></div>
+              <div><b data-i18n="s.r4">Cliente nuevo</b><em>CRM</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="badge mono" data-i18n="s.badge">02 // Software & sistemas</span>
+        <h2 class="h2" data-i18n="s.title">Software hecho para cómo trabaja tu empresa</h2>
+        <p class="lead" data-i18n="s.sub">Elimina las limitaciones de programas genéricos y unifica tu gestión diaria en una sola plataforma rápida, intuitiva y 100% de tu propiedad.</p>
+        <div class="tags" id="tags">
+          <span class="tag" data-i18n="s.tg1">CRM y ERP</span><span class="tag">Web</span><span class="tag">E-commerce</span><span class="tag" data-i18n="s.tg2">Software a medida</span><span class="tag" data-i18n="s.tg3">Apps móviles</span>
+        </div>
+        <a class="btn" href="software.html"><span data-i18n="s.btn">Ver todo sobre Software</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 HOSTING -->
+  <section class="svc s-host gutter" id="s-host">
+    <i class="node nd" style="top:50%;--x:50%"></i><i class="node nm" style="top:22px;--mx:calc(100% - 11px)"></i><i class="node nm" style="bottom:22px;--mx:calc(100% - 11px)"></i>
+    <div class="wrap">
+      <div class="netbox" id="netbox">
+        <canvas id="net" aria-hidden="true"></canvas>
+        <div class="net-hud">
+          <span class="status" data-i18n="h.status">Todos los sistemas operativos</span>
+          <div class="uptime"><b id="uptime">0.00%</b><span class="mono">Uptime</span></div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="badge mono" data-i18n="h.badge">03 // Hosting & disponibilidad</span>
+        <h2 class="h2"><span data-i18n="h.t1">Tu web y tus correos,</span> <span class="grad-text" data-i18n="h.t2">siempre funcionando.</span></h2>
+        <p class="lead" data-i18n="h.sub">Infraestructura sólida con monitoreo continuo, respaldos automáticos y soporte directo con ingenieros.</p>
+        <ul class="checks" id="checks">
+          <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span><span data-i18n="h.c1">Servidores dedicados de alta velocidad</span></li>
+          <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span><span data-i18n="h.c2">Respaldos automáticos diarios</span></li>
+          <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span><span data-i18n="h.c3">Certificados de seguridad SSL incluidos</span></li>
+          <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span><span data-i18n="h.c4">Cuentas de correo corporativo blindadas</span></li>
+          <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span><span data-i18n="h.c5">Monitoreo 24/7 y soporte técnico prioritario</span></li>
+        </ul>
+        <a class="btn primary wa-link" href="#" target="_blank" rel="noopener" data-wa="h.wa"><span data-i18n="h.btn">Cotizar plan</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 IA -->
+  <section class="s-ia gutter" id="s-ia">
+    <i class="node nm" style="top:22px;--mx:9px"></i><i class="node nm" style="bottom:22px;--mx:9px"></i><i class="node nd" style="top:70px;--x:7%"></i>
+    <i class="node nd" style="bottom:60px;--x:5%"></i>
+    <div class="wrap">
+      <span class="badge mono" data-i18n="i.badge">04 // Inteligencia artificial</span>
+      <h2 class="h2" data-i18n="i.title">Tu negocio trabajando las 24 horas.</h2>
+      <p class="lead" data-i18n="i.sub">Respuestas inmediatas a clientes, cotizaciones automáticas y sincronización de datos sin intervención manual.</p>
+      <div class="ia-tabs" id="ia-tabs" role="group"></div>
+      <div class="flow" id="flow">
+        <svg id="flow-svg" aria-hidden="true"></svg>
+        <div class="fnode"><span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg></span><h4></h4><span class="mono"></span></div>
+        <div class="fnode"><span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></span><h4></h4><span class="mono"></span></div>
+        <div class="fnode"><span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span><h4></h4><span class="mono"></span></div>
+      </div>
+      <div class="stats" id="stats">
+        <div class="stat"><b>24/7</b><h4 data-i18n="i.s1">Atención sin pausas</h4><p data-i18n="i.s1d">Ningún cliente espera respuesta, incluso en fines de semana, noches y feriados.</p></div>
+        <div class="stat"><b data-count="0" data-from="60" data-suffix=" seg">0 seg</b><h4 data-i18n="i.s2">Tiempo de respuesta</h4><p data-i18n="i.s2d">Respuestas instantáneas y precisas entrenadas con las reglas de tu negocio.</p></div>
+        <div class="stat"><b data-count="60" data-prefix="+" data-suffix="%">+60%</b><h4 data-i18n="i.s3">Ahorro de tiempo operativo</h4><p data-i18n="i.s3d">Tu equipo se enfoca en cerrar negocios mientras la IA resuelve lo repetitivo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- iGAMING -->
+  <section class="s-gaming gutter" id="s-gaming">
+    <canvas id="coins" aria-hidden="true"></canvas>
+    <i class="node nd" style="top:22%;--x:97.5%"></i><i class="node nd" style="bottom:30%;--x:97.5%"></i><i class="node nd" style="bottom:14%;--x:2.5%"></i><i class="node nm" style="top:22px;--mx:calc(100% - 11px)"></i><i class="node nm" style="bottom:22px;--mx:calc(100% - 11px)"></i>
+    <div class="wrap">
+      <div class="holo" id="holo">
+        <span class="chips"></span>
+        <div class="copy">
+          <span class="mono kicker" data-i18n="g.kicker">Solución especializada</span>
+          <h3 data-i18n="g.title">¿Operas un casino o casa de apuestas deportivas?</h3>
+          <p data-i18n="g.sub">Plataforma llave en mano con integración cripto (USDT, BTC, TRON), control de riesgos y backoffice en tiempo real.</p>
+        </div>
+        <a class="btn primary" href="#s-gaming"><span data-i18n="g.btn">Conoce nuestra plataforma iGaming</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 PASOS -->
+  <section class="s-steps gutter" id="s-steps">
+    <i class="node nd" style="top:30%;--x:2.5%"></i>
+    <i class="node nd" style="bottom:10%;--x:2.5%"></i><i class="node nm" style="top:22px;--mx:9px"></i><i class="node nm" style="bottom:22px;--mx:9px"></i>
+    <div class="steps-pin">
+      <div class="wrap" style="width:100%">
+        <div class="steps-head">
+          <span class="mono" data-i18n="p.kicker">Método probado</span>
+          <h2 class="h2" data-i18n="p.title">De la primera llamada al lanzamiento en 4 pasos</h2>
+        </div>
+        <div class="rail"><i id="rail"></i></div>
+        <div class="steps" id="steps">
+          <div class="step"><b>01.</b><h4 data-i18n="p.1">Llamada inicial</h4><p data-i18n="p.1d">Entendemos tu negocio, clarificamos tus metas y evaluamos las prioridades de ejecución.</p><span class="mono" data-i18n="p.1t">Día 1</span></div>
+          <div class="step"><b>02.</b><h4 data-i18n="p.2">Plan y diseño</h4><p data-i18n="p.2d">Definimos la arquitectura, los flujos clave y los prototipos visuales interactivos para tu validación.</p><span class="mono" data-i18n="p.2t">Semana 1-2</span></div>
+          <div class="step"><b>03.</b><h4 data-i18n="p.3">Desarrollo ágil</h4><p data-i18n="p.3d">Construimos la solución en sprints rápidos, mostrándote avances reales y testeando juntos cada módulo.</p><span class="mono" data-i18n="p.3t">Semana 3-6</span></div>
+          <div class="step"><b>04.</b><h4 data-i18n="p.4">Lanzamiento</h4><p data-i18n="p.4d">Entrega completa a producción, capacitación detallada a tu equipo y soporte post-lanzamiento activo.</p><span class="mono" data-i18n="p.4t">En vivo</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="s-faq gutter" id="s-faq">
+    <i class="node nd" style="top:40%;--x:92%"></i><i class="node nm" style="top:22px;--mx:calc(100% - 11px)"></i><i class="node nm" style="bottom:22px;--mx:calc(100% - 11px)"></i>
+    <div class="wrap">
+      <div class="faq-head">
+        <span class="mono" data-i18n="f.kicker">Transparencia</span>
+        <h2 class="h2" data-i18n="f.title">Preguntas Frecuentes</h2>
+      </div>
+      <div id="faq"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->

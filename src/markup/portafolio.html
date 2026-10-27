@@ -1,0 +1,75 @@
+<section id="portfolio" aria-labelledby="pf-title">
+    <div class="pf-intro gutter">
+      <div class="wrap">
+        <span class="badge mono" data-i18n="pf.badge">Portafolio · Diseño web & marca</span>
+        <h1 id="pf-title"><span data-i18n="pf.t1">Diseño que se ve bien y</span> <span class="grad-text" data-i18n="pf.t2">vende mejor.</span></h1>
+        <p data-i18n="pf.sub">Del crypto casino a la identidad de una marca: cada proyecto está pensado para convertir. Desliza para recorrerlos.</p>
+      </div>
+    </div>
+
+    <div class="pf-stage" id="stage">
+      <div class="pf-sticky">
+        <div class="pf-glow"></div>
+        <canvas id="gl" aria-label="Galería 3D de proyectos"></canvas>
+        <div class="hud">
+          <div class="filters" id="filters" role="group" aria-label="Categorías"></div>
+          <div class="info" id="info" aria-live="polite">
+            <div class="eyebrow mono swap"><b id="i-cat">—</b><span>/</span><span id="i-year">—</span></div>
+            <h3 class="swap" id="i-name">—</h3>
+            <div class="role swap" id="i-role">—</div>
+            <button class="open" type="button" id="i-open"><span data-i18n="hud.open">Ver caso completo</span> <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="rail" aria-hidden="true">
+            <span class="now" id="r-now">01</span>
+            <div class="bar"><i id="r-bar"></i></div>
+            <span id="r-total">/ 12</span>
+          </div>
+          <div class="hint mono" id="hint"><span></span><em style="font-style:normal" data-i18n="hud.hint">Desliza para girar</em></div>
+          <div class="sample mono" data-i18n="hud.sample">Imágenes de ejemplo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="case" id="case" hidden role="dialog" aria-modal="true" aria-labelledby="c-name">
+  <div class="case-bar gutter">
+    <button class="back" type="button" id="c-back"><span aria-hidden="true">←</span> <span data-i18n="case.back">Volver al portafolio</span></button>
+    <div class="bar-right">
+      <span class="mono" id="c-count" style="color:var(--muted)">01 / 12</span>
+      <a class="wa-btn small" id="c-wa-top" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><span>WhatsApp</span></a>
+    </div>
+  </div>
+  <div class="case-inner gutter">
+    <div class="wrap">
+      <div class="case-hero"><img id="c-hero" alt=""></div>
+      <div class="case-head">
+        <div>
+          <span class="badge mono" id="c-cat">—</span>
+          <h1 id="c-name">—</h1>
+        </div>
+        <div>
+          <p id="c-desc">—</p>
+          <div class="case-actions">
+            <a class="live" id="c-live" href="#" target="_blank" rel="noopener"><span data-i18n="case.live">Ver sitio en vivo</span> <span aria-hidden="true">↗</span></a>
+            <a class="wa-btn" id="c-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><span data-i18n="case.wa">Más información por WhatsApp</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="meta">
+        <div><span class="mono" data-i18n="case.year">Año</span><strong id="c-year">—</strong></div>
+        <div><span class="mono" data-i18n="case.role">Rol</span><strong id="c-role">—</strong></div>
+        <div><span class="mono" data-i18n="case.cat">Categoría</span><strong id="c-cat2">—</strong></div>
+      </div>
+      <div class="gallery" id="c-gallery"></div>
+      <button class="next" type="button" id="c-next">
+        <div><span class="mono" data-i18n="case.next">Siguiente proyecto</span><h3 id="c-next-name">—</h3></div>
+        <img id="c-next-img" alt="">
+      </button>
+      <div class="pull">
+        <span class="mono" data-i18n="case.pull">Sigue bajando para cerrar el proyecto</span>
+        <div class="meter"><i id="c-meter"></i></div>
+        <button type="button" id="c-continue"><span data-i18n="case.continue">Cerrar proyecto</span> ×</button>
+      </div>
+    </div>
+  </div>
+</div>
