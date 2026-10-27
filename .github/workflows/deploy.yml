@@ -30,7 +30,7 @@ jobs:
       - run: npm audit --omit=dev --audit-level=high
       - run: npm run build
       - name: Subir dist/ al hosting
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
