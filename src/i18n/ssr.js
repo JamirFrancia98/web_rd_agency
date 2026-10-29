@@ -30,8 +30,8 @@ export function ssrTranslate(html, dict, lang) {
     });
 
   // enlaces entre páginas → URL del idioma actual
-  html = html.replace(/href="(index|portafolio|nosotros|casos|igaming|software|hosting|diseno-web|automatizacion-ia|contacto)\.html(#[^"]*)?"/g,
-    (m, file, hash) => `href="${route(FILES[file + '.html'], lang)}${hash || ''}"`);
+  html = html.replace(/href="(index|portafolio|nosotros|casos|igaming|software|hosting|diseno-web|automatizacion-ia|contacto)\.html(\?[^"#]*)?(#[^"]*)?"/g,
+    (m, file, q, hash) => `href="${route(FILES[file + '.html'], lang)}${q || ''}${hash || ''}"`);
 
   return html;
 }

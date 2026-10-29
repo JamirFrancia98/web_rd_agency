@@ -11,7 +11,10 @@ export const T = {
  'd.f3':['Fácil de usar','Easy to use','Facile da usare'],'d.f3d':['Interfaces claras que cualquier persona entiende al instante.','Clear interfaces anyone understands instantly.','Interfacce chiare che chiunque capisce al volo.'],
  's.badge':['02 // Software & sistemas','02 // Software & systems','02 // Software & sistemi'],'s.title':['Software hecho para cómo trabaja tu empresa','Software built for how your company works','Software fatto su misura per come lavora la tua azienda'],
  's.sub':['Elimina las limitaciones de programas genéricos y unifica tu gestión diaria en una sola plataforma rápida, intuitiva y 100% de tu propiedad.','Drop the limits of generic tools and run your daily operations on one fast, intuitive platform that is 100% yours.','Supera i limiti dei programmi generici e unifica la gestione quotidiana in un’unica piattaforma veloce, intuitiva e 100% tua.'],
- 's.tg1':['CRM y ERP','CRM & ERP','CRM ed ERP'],'s.tg2':['Software a medida','Custom software','Software su misura'],'s.tg3':['Apps móviles','Mobile apps','App mobile'],'s.btn':['Ver todo sobre Software','All about Software','Tutto sul Software'],
+ 's.tg1':['CRM y ERP','CRM & ERP','CRM ed ERP'],'s.tg2':['Software a medida','Custom software','Software su misura'],'s.tg3':['Apps móviles','Mobile apps','App mobile'],'s.btn':['Saber más sobre Software','Learn more about Software','Scopri di più sul Software'],
+ 'more.d':['Saber más sobre Diseño web','Learn more about Web design','Scopri di più sul Web design'],
+ 'more.h':['Saber más sobre Hosting','Learn more about Hosting','Scopri di più sull’Hosting'],
+ 'more.i':['Saber más sobre Automatización IA','Learn more about AI automation','Scopri di più sull’Automazione IA'],
  's.compiling':['Compilando módulos…','Compiling modules…','Compilazione moduli…'],'s.live':['En producción','Live','In produzione'],'s.k1':['Inventario','Inventory','Inventario'],'s.k2':['Ventas hoy','Sales today','Vendite oggi'],'s.k3':['Facturas','Invoices','Fatture'],
  's.r1':['Pedido #4092','Order #4092','Ordine #4092'],'s.r2':['Stock almacén 2','Warehouse 2 stock','Stock magazzino 2'],'s.r3':['Factura F-0312','Invoice F-0312','Fattura F-0312'],'s.r4':['Cliente nuevo','New customer','Nuovo cliente'],
  'h.badge':['03 // Hosting & disponibilidad','03 // Hosting & uptime','03 // Hosting & disponibilità'],'h.t1':['Tu web y tus correos,','Your website and email,','Il tuo sito e la tua email,'],'h.t2':['siempre funcionando.','always running.','sempre attivi.'],
@@ -58,7 +61,10 @@ export const FAQ = [
   ['Quanto tempo richiede di solito un progetto?','Una landing o un’identità di marca richiede da 2 a 4 settimane. Un software su misura o una piattaforma da 6 a 12 settimane, a seconda del perimetro.']],
  [['¿Qué tipo de soporte recibo después del lanzamiento?','Incluimos 30 días de soporte sin costo. Después puedes elegir un plan mensual con monitoreo, actualizaciones y atención prioritaria.'],
   ['What support do I get after launch?','We include 30 days of free support. After that you can choose a monthly plan with monitoring, updates and priority service.'],
-  ['Che supporto ricevo dopo il lancio?','Includiamo 30 giorni di supporto gratuito. Poi puoi scegliere un piano mensile con monitoraggio, aggiornamenti e assistenza prioritaria.']]
+  ['Che supporto ricevo dopo il lancio?','Includiamo 30 giorni di supporto gratuito. Poi puoi scegliere un piano mensile con monitoraggio, aggiornamenti e assistenza prioritaria.']],
+ [['¿Trabajan con empresas fuera de Perú?','Sí. Desde Lima trabajamos con clientes en 4 países, de forma 100% remota: reuniones por videollamada, avances semanales en un entorno de pruebas y soporte en tu mismo horario laboral.'],
+  ['Do you work with companies outside Peru?','Yes. From Lima we work with clients in 4 countries, fully remotely: video calls, weekly progress on a test environment and support in your business hours.'],
+  ['Lavorate con aziende fuori dal Perù?','Sì. Da Lima lavoriamo con clienti in 4 paesi, completamente da remoto: videochiamate, avanzamenti settimanali su un ambiente di test e supporto nel tuo orario lavorativo.']]
 ];
 export const IA_TABS = [
  {label:['Atención al cliente','Customer service','Assistenza clienti'], nodes:[

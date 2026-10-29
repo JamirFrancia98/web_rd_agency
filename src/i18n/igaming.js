@@ -27,5 +27,7 @@ export const T = {
  'f.kicker':['07 // Resolución de dudas','07 // Questions answered','07 // Risposte ai dubbi'],'f.title':['Preguntas frecuentes','Frequently asked questions','Domande frequenti'],
  'c.badge':['¿Listo para el siguiente paso?','Ready for the next step?','Pronto per il prossimo passo?'],'c.t1':['¿Tu casino es el próximo','Is your casino the next','Il tuo casinò è il prossimo'],'c.t2':['jackpot?','jackpot?','jackpot?'],
  'c.sub':['Te mostramos la plataforma funcionando con tu marca en una demo de 30 minutos.','We’ll show you the platform running with your brand in a 30-minute demo.','Ti mostriamo la piattaforma con il tuo marchio in una demo di 30 minuti.'],
- 'c.btn':['Agendar demo','Book a demo','Prenota una demo'],'c.wa':['Escríbenos por WhatsApp','Message us on WhatsApp','Scrivici su WhatsApp']
+ 'c.btn':['Agendar demo','Book a demo','Prenota una demo'],'c.wa':['Escríbenos por WhatsApp','Message us on WhatsApp','Scrivici su WhatsApp'],
+ 'p.cta':['Ver la plataforma con mi marca','See the platform with my brand','Vedi la piattaforma con il mio brand'],'p.cta2':['Solicitar propuesta','Request a proposal','Richiedi una proposta'],
+ 'o.cta.t':['¿Quieres ser el próximo caso de éxito?','Want to be the next success story?','Vuoi essere il prossimo caso di successo?'],'o.cta':['Lanzar mi casino con RD','Launch my casino with RD','Lancia il mio casinò con RD'],
 };

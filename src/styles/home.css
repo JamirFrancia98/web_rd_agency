@@ -307,3 +307,10 @@ section{position:relative}
   .holo,.holo .chips{animation:none}
   *{transition-duration:0s!important}
 }
+
+/* botones "Saber más" hacia cada página */
+.more-btn{justify-self:start;margin-top:6px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn-row .more-btn{margin-top:0}
+.s-ia .ia-more{justify-self:center;margin-top:26px;background:var(--ink);color:#fff;border-color:var(--ink)}
+.s-ia .ia-more:hover{border-color:var(--violet)}

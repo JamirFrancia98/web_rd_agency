@@ -133,16 +133,16 @@ function updEngine(){
 }
 
 /* ======= PLATAFORMA: 4 pantallas ======= */
-const GAMES = [['Neon Fruits','Pragmatic','96.5%','HOT',['#ff3df5','#5a1170'],'M7 17c0-4 2-7 5-9M12 8c2-2 5-2 6 0-2 1-4 1-6 0zM8 21a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM16 21a4 4 0 1 1 0-8 4 4 0 0 1 0 8z'],
- ['Thunder Gates','Pragmatic','96.2%','TOP',['#7b95ff','#1d2a6b'],'M13 2L4 14h7l-1 8 9-12h-7z'],
- ['Lightning Wheel','Evolution','LIVE','EN VIVO',['#3ee08a','#0f3b28'],'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 3'],
- ['Sky Rocket','Spribe','97%','CRASH',['#ff9f1a','#4a1d05'],'M5 19c3-1 5-3 6-6l6-6 2 2-6 6c-3 1-5 3-6 6zM15 5l4 4']];
+const GAMES = [['Super Rich God','30AKS','/img/games/super-rich-god.webp'],
+ ['Legend of Zeus II','Luckybird Slots','/img/games/legend-of-zeus-2.webp'],
+ ['Super Bird','Luckybird Originals','/img/games/super-bird.webp'],
+ ['Haunted Reels','BGaming','/img/games/haunted-reels.webp']];
 const PLAYERS = ['luc***21','ana***07','mrk***88','sol***14','dav***03','kai***56'];
 function views(){
   const L = RD.L;
   const T = ['p.t1','p.t2','p.t3','p.t4'];
   $('#ptabs').innerHTML = T.map((k,i) => `<button type="button" role="tab" data-v="${i}" aria-pressed="${i===curView}">${tr(k)}</button>`).join('');
-  $$('#ptabs button').forEach(b => b.addEventListener('click', () => setView(+b.dataset.v)));
+  $$('#ptabs button').forEach(b => b.addEventListener('click', () => { viewPaused = 0; setView(+b.dataset.v); }));
   const tx = {
     lobby:['Lobby','Lobby','Lobby'], tour:['Torneo semanal en vivo','Live weekly tournament','Torneo settimanale live'], pool:['Bolsa de premios','Prize pool','Montepremi'],
     tourd:['Compite en slots y mesas en vivo con cashback diario del 12%.','Compete on slots and live tables with 12% daily cashback.','Gareggia su slot e tavoli live con cashback giornaliero del 12%.'], join:['Participar ahora','Join now','Partecipa ora'],
@@ -157,14 +157,14 @@ function views(){
   const coinImg = k => `<img alt="" src="${SPR[k].toDataURL()}">`;
   $('#views').innerHTML = `
   <div class="view" data-i="0">
-    <div class="screen"><div class="sbar"><span class="brand"><i>R</i>REVO CASINO</span><nav><span>${t('lobby').toUpperCase()}</span><span>SLOTS</span><span>LIVE</span><span>SPORTS</span><span>VIP</span></nav><span class="bal"><b id="bal">6,050.50 USDT</b><em>${t('dep')}</em></span></div>
+    <div class="screen"><div class="sbar"><span class="brand"><i>R</i>RD CASINO</span><nav><span>${t('lobby').toUpperCase()}</span><span>SLOTS</span><span>LIVE</span><span>SPORTS</span><span>VIP</span></nav><span class="bal"><b id="bal">6,050.50 USDT</b><em>${t('dep')}</em></span></div>
       <div class="sbody">
         <div class="banner"><div><small>● ${t('tour')}</small><b>${t('pool')} <span class="gold-text led" id="pool">$150,000</span> USDT</b><p>${t('tourd')}</p></div><span class="btnw">${t('join')}</span></div>
         <div class="cats"><span>${t('all')} (5,120)</span><span>Pragmatic</span><span>Evolution</span><span>Spribe</span><span>Hacksaw</span></div>
-        <div class="games">${GAMES.map(g => `<div class="game"><div class="art" style="background:linear-gradient(140deg,${g[4][0]},${g[4][1]})"><span class="rtp">RTP ${g[2]}</span><span class="tag">${g[3]}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${g[5]}"/></svg></div><div class="nm">${g[0]}<em>${g[1]}</em></div></div>`).join('')}</div>
+        <div class="games">${GAMES.map(g => `<div class="game"><img src="${g[2]}" alt="${g[0]} · ${g[1]}" width="146" height="180" loading="lazy" decoding="async"></div>`).join('')}</div>
         <div class="wins"><span class="lv"></span><span id="win"></span></div>
       </div></div>
-    <div class="phone"><div class="in"><div class="top">RevoBet <em id="online">1,284 ${t('online')}</em></div>
+    <div class="phone"><div class="in"><div class="top">RD Bet <em id="online">1,284 ${t('online')}</em></div>
       <div class="bet"><small>${t('quick')}</small><b>Atlético Norte vs Dínamo Sur</b><div class="od" id="od"><span>1.84</span><span>3.40</span><span>4.15</span></div><div class="place">${t('place')}</div></div>
       <div class="mini"><span>🎡 ${t('wheel')}<small>x25 bonus</small></span><span>🏆 ${t('tourn')}<small>$150K</small></span></div></div></div>
   </div>
@@ -191,7 +191,7 @@ function views(){
   <div class="view single" data-i="3">
     <div class="screen"><div class="sbar"><span class="brand"><i>R</i>${tr('p.t4')}</span><span class="bal"><b>RevShare 35% · CPA $120</b></span></div>
       <div class="sbody"><div class="aff">
-        <div class="alink">${t('link')}: <b>revocasino.com/?ref=STREAMER21</b><span>📋</span></div>
+        <div class="alink">${t('link')}: <b>rdcasino.com/?ref=STREAMER21</b><span>📋</span></div>
         <div class="txflow"><div class="funnel" id="funnel">
           <div><span>${t('clicks')}</span><span class="b" style="width:100%"></span><b id="f0">48,920</b></div>
           <div><span>${t('regs')}</span><span class="b" style="width:42%"></span><b id="f1">6,214</b></div>
@@ -202,8 +202,17 @@ function views(){
   </div>`;
   setView(curView, true);
 }
-let curView = 0, platOn = false;
-function setView(i){ curView = i; $$('#ptabs button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.v === i)); $$('#views .view').forEach(v => v.classList.toggle('on', +v.dataset.i === i)); if(i === 2) runTx(); }
+let curView = 0, platOn = false, viewT0 = 0, viewHold = false, viewPaused = 0;
+const VIEW_MS = 5000;
+function autoViews(now){
+  requestAnimationFrame(autoViews);
+  if(reduced || !platOn) { viewT0 = now - viewPaused; return; }
+  if(viewHold){ viewT0 = now - viewPaused; return; }
+  viewPaused = now - viewT0;
+  const b = $$('#ptabs button')[curView]; if(b) b.style.setProperty('--pg', Math.min(1, viewPaused / VIEW_MS));
+  if(viewPaused >= VIEW_MS){ viewPaused = 0; setView((curView + 1) % 4); }
+}
+function setView(i){ curView = i; viewT0 = performance.now(); $$('#ptabs button').forEach(b => { b.setAttribute('aria-pressed', +b.dataset.v === i); b.style.setProperty('--pg', 0); }); $$('#views .view').forEach(v => v.classList.toggle('on', +v.dataset.i === i)); if(i === 2) runTx(); }
 let txTimers = [];
 function runTx(){
   txTimers.forEach(clearTimeout); txTimers = [];
@@ -233,18 +242,20 @@ function platLive(){
 
 /* ======= OPERADORES ======= */
 const OPS = [
- {k:['Crypto casino internacional','International crypto casino','Casinò crypto internazionale'], when:['Lanzado en 3 semanas','Launched in 3 weeks','Lanciato in 3 settimane'], n:'Area51 Casino',
+ {k:['Crypto casino internacional','International crypto casino','Casinò crypto internazionale'], when:['Lanzado en 2 meses','Launched in 2 months','Lanciato in 2 mesi'], n:'Area51 Casino',
   d:['Migró desde una solución heredada con caídas frecuentes de catálogo. Implementó nuestro agregador unificado y pasarela multi-token en tiempo récord.','Moved off a legacy setup with frequent catalogue outages, onto our unified aggregator and multi-token gateway in record time.','Ha lasciato una soluzione legacy con frequenti cadute del catalogo, passando al nostro aggregatore e gateway multi-token in tempi record.'],
   m:[[['Volumen mensual','Monthly volume','Volume mensile'],2.4,'+$','M USD',1],[['Usuarios activos','Active users','Utenti attivi'],18500,'','+',0]]},
- {k:['Sportsbook híbrido LatAm','Hybrid LatAm sportsbook','Sportsbook ibrido LatAm'], when:['Copa América & Champions','Copa América & Champions','Copa América & Champions'], n:'Bitsky Sportsbook',
-  d:['Plataforma deportiva enfocada en apuestas rápidas con PIX y USDT. Soportó picos masivos de tráfico concurrente sin un solo segundo de degradación.','Sports platform built for fast bets with PIX and USDT. It handled massive concurrent traffic peaks without a second of slowdown.','Piattaforma sportiva per scommesse rapide con PIX e USDT. Ha retto enormi picchi di traffico senza un secondo di rallentamento.'],
-  m:[[['Uptime en finales','Uptime in finals','Uptime nelle finali'],99.98,'','%',2],[['Incidentes graves','Major incidents','Incidenti gravi'],0,'','',0,[' casos',' cases',' casi']]]}
+ {vice:true, k:['Crypto casino · LatAm','Crypto casino · LatAm','Casinò crypto · LatAm'], when:['Estética retro neón 80s','Retro 80s neon look','Estetica retro neon anni ’80'], n:'Bitsky Casino',
+  d:['Casino cripto con identidad retro de neón ochentero: atardeceres, palmeras y torneos nocturnos. Depósitos en USDT y PIX con retiros automáticos.','Crypto casino with a retro 80s neon identity: sunsets, palm trees and late-night tournaments. USDT and PIX deposits with automatic withdrawals.','Casinò crypto con identità retro neon anni ’80: tramonti, palme e tornei notturni. Depositi in USDT e PIX con prelievi automatici.'],
+  m:[[['Uptime en torneos','Uptime in tournaments','Uptime nei tornei'],95,'','%',0],[['Incidentes graves','Major incidents','Incidenti gravi'],2,'','',0,[' casos',' cases',' casi']]],
+  note:['Ambos causados por proveedores externos (pasarela de pagos y CDN) y mitigados por RD en menos de 30 min.','Both caused by external providers (payment gateway and CDN) and mitigated by RD in under 30 min.','Entrambi causati da fornitori esterni (gateway di pagamento e CDN) e mitigati da RD in meno di 30 min.']}
 ];
 const SEECASE = ['Ver caso de estudio completo →','View full case study →','Vedi il caso completo →'];
 function renderOps(){
   const L = RD.L;
-  $('#ops').innerHTML = OPS.map(o => `<div class="op"><div class="top"><span class="mono">${o.k[L]}</span><span>${o.when[L]}</span></div><h3>${o.n}</h3><p>${o.d[L]}</p>
+  $('#ops').innerHTML = OPS.map(o => `<div class="op${o.vice ? ' vice' : ''}">${o.vice ? '<span class="vc-sun" aria-hidden="true"></span><span class="vc-grid" aria-hidden="true"></span>' : ''}<div class="top"><span class="mono">${o.k[L]}</span><span>${o.when[L]}</span></div><h3>${o.n}</h3><p>${o.d[L]}</p>
     <div class="om">${o.m.map(m => `<div><small>${m[0][L]}</small><b class="${m[4] === 2 ? '' : ''}" style="color:${m[1] === 0 ? 'var(--fg)' : (m[3] === '%' ? 'var(--green)' : '#ff9cf0')}" data-to="${m[1]}" data-pre="${m[2]}" data-suf="${m[3]}${m[5] ? m[5][L] : ''}" data-dec="${m[4]}">${m[2]}${m[1]}${m[3]}${m[5] ? m[5][L] : ''}</b></div>`).join('')}</div>
+    ${o.note ? `<p class="op-note">* ${o.note[L]}</p>` : ''}
     <a href="${route('casos')}">${SEECASE[L]}</a></div>`).join('');
   RD.onEnter('#ops .om b', b => RD.countUp(b, +b.dataset.to, {pre:b.dataset.pre, suf:b.dataset.suf, dec:+b.dataset.dec, fmt: v => (+b.dataset.dec ? v.toFixed(+b.dataset.dec) : Math.round(v).toLocaleString('en-US'))}), {threshold:.6});
   if(!isTouch && !reduced) $$('#ops .op').forEach(op => {
@@ -330,6 +341,10 @@ function renderFaq(){
 
 /* ======= ARRANQUE ======= */
 makeSprites();
+const stg = $('.stagebox');
+['pointerenter','focusin'].forEach(e => stg.addEventListener(e, () => { viewHold = true; stg.classList.add('held'); }));
+['pointerleave','focusout'].forEach(e => stg.addEventListener(e, () => { viewHold = false; stg.classList.remove('held'); }));
+requestAnimationFrame(autoViews);
 new IntersectionObserver(es => { platOn = es[0].isIntersecting; if(platOn && curView === 2) runTx(); }).observe($('#views'));
 RD.onLang(() => { RD.splitWords($('#h1'), [['h.t1',''],['h.t2','hot']]); $('#wd').textContent = tr('h.wd'); renderEngine(); views(); renderOps(); renderLevels(); renderFaq(); updLevels(); });
 RD.spine.updaters.push(updEngine, updLevels, () => $('#jackpot').classList.toggle('lit', $('#jackpot').getBoundingClientRect().top < innerHeight*.62));

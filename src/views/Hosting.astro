@@ -16,6 +16,9 @@ let wi = 0;
 const W = (k, cls = '') => t(k).split(' ').map((w) => ({ w, cls, d: (0.15 + 0.08 * wi++).toFixed(2) }));
 // 90 días de disponibilidad: casi todo verde, 2 días con incidencia menor
 const days = Array.from({ length: 90 }, (_, i) => (i === 23 || i === 61 ? 'warn' : 'ok'));
+// datos estructurados de preguntas frecuentes (Google y motores de IA)
+const faqLd = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: lang,
+  mainEntity: t('f.q').map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 const icons = [
   '<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/>',
   '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
@@ -89,7 +92,7 @@ const icons = [
       <div class="sec-head left"><span class="badge mono">{t('i.badge')}</span><h2 class="h2" style="max-width:20ch">{t('i.title')}</h2></div>
       <div class="grid-4">
         {[1, 2, 3, 4].map((n) => (
-          <div class="feat-card rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[n - 1]} /></span><h3>{t('i.' + n)}</h3><p>{t('i.' + n + 'd')}</p></div>
+          <div class="feat-card rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[n - 1]} /></span><h3>{t('i.' + n)}</h3></div>
         ))}
       </div>
     </div>
@@ -123,15 +126,7 @@ const icons = [
     </div>
   </section>
 
-  <section class="sec gutter">
-    <i class="node l" style="top:10%"></i>
-    <div class="wrap">
-      <div class="sec-head"><h2 class="h2">{t('f.title')}</h2></div>
-      <div class="faq">{t('f.q').map(([q, a], i) => <details open={i === 0}><summary>{q}</summary><p>{a}</p></details>)}</div>
-    </div>
-  </section>
-
-  <section class="gutter" style="padding-block:20px 100px">
+  <section class="gutter" style="padding-block:20px 30px">
     <div class="wrap"><div class="cta-band">
       <h2 class="h2">{t('x.title1')} <span class="grad-text">{t('x.title2')}</span></h2>
       <p class="lead">{t('x.sub')}</p>
@@ -141,6 +136,15 @@ const icons = [
       </div>
     </div></div>
   </section>
+  <section class="sec gutter" style="padding-bottom:110px">
+    <i class="node l" style="top:10%"></i><i class="node l" style="bottom:12%"></i>
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2">{t('f.title')}</h2></div>
+      <div class="faq">{t('f.q').map(([q, a], i) => <details open={i === 0}><summary>{q}</summary><p>{a}</p></details>)}</div>
+    </div>
+  </section>
+  <script type="application/ld+json" is:inline set:html={faqLd}></script>
+
 </Base>
 
 <script>

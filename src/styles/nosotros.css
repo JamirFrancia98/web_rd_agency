@@ -74,7 +74,7 @@
 @media (max-width:860px){.flow{grid-template-columns:1fr}.arrowc{justify-self:center;transform:rotate(90deg)}}
 
 /* comparativa */
-.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr) minmax(0,1fr);gap:16px;align-items:stretch}
+.cmp{display:grid;grid-template-columns:minmax(0,1fr);max-width:600px;margin:30px auto 0;gap:16px}
 .col{position:relative;border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:26px;display:grid;grid-template-rows:auto auto 1fr auto;gap:16px;transition:opacity .7s,transform .8s var(--out),filter .7s,box-shadow .7s,border-color .7s}
 .col .mono{color:var(--muted)}
 .col h3{font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}

@@ -23,7 +23,7 @@ const COLS = [
 const REC = ['Recomendado','Recommended','Consigliato'], GO = ['Comenzar →','Get started →','Inizia →'];
 function renderCmp(){
   const L = RD.L;
-  $('#cmp').innerHTML = COLS.map(c => `
+  $('#cmp').innerHTML = COLS.filter(c => c.cls === 'rd').map(c => `
     <div class="col ${c.cls}">
       ${c.cls === 'rd' ? `<span class="rec">${REC[L]}</span>` : ''}
       <span class="mono">${c.k[L]}</span>
@@ -70,7 +70,7 @@ function updCmp(){
   const cmp = $('#cmp'); if(!cmp.children.length) return;
   const p = reduced ? 1 : pr(cmp, .75, -.05);
   const row = p < .08 ? -1 : Math.min(3, Math.floor((p - .08)/.18));
-  $$('#cmp .row').forEach(r => r.classList.toggle('hl', +r.dataset.row === row && p < .82));
+  $$('#cmp .row').forEach(r => r.classList.toggle('hl', +r.dataset.row <= row || p >= .82));
   cmp.classList.toggle('decided', p >= .82);
 }
 
