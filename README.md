@@ -60,7 +60,7 @@ public/
 - **Header o footer:** `src/components/Header.astro` y `Footer.astro` (cambian en todas las páginas).
 - **Añadir un proyecto al portafolio:** array `PROJECTS` en `src/i18n/portafolio.js`
   (pon la imagen en `public/img/` y usa `image: '/img/mi-proyecto.jpg'`).
-- **Añadir o cambiar casos de éxito:** array `CASES` en `src/scripts/casos.js` (los actuales son ejemplos).
+- **Añadir o cambiar casos de éxito:** array `CASES` en `src/scripts/casos.js` (los actuales son demos conceptuales ficticias).
 - **Dominio:** cambia `site` en `astro.config.mjs` y la línea `Sitemap` de `public/robots.txt`.
 
 ## Formulario de contacto
@@ -90,9 +90,10 @@ En `npm run dev` el PHP no se ejecuta: el formulario mostrará el aviso de error
 - **Dependabot** (`.github/dependabot.yml`) abre un Pull Request cuando una librería tiene una actualización de seguridad.
 - El despliegue ejecuta `npm audit` y se detiene si hay vulnerabilidades altas.
 
-## Despliegue automático (opcional)
+## Despliegue manual
 
-`.github/workflows/deploy.yml` compila y sube `dist/` a tu hosting por FTPS en cada `git push` a `main`.
+`.github/workflows/deploy.yml` compila y sube `dist/` a tu hosting por FTPS solo cuando se lanza a mano desde GitHub Actions.
+**No lo uses ni subas nada a `public_html/` antes de migrar WordPress con un backup verificado:** sobrescribiría su `.htaccess`.
 Configura en GitHub → **Settings → Secrets and variables → Actions**:
 
 | Secreto | Ejemplo |
