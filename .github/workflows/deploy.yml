@@ -1,4 +1,5 @@
-# Compila el sitio y lo sube a tu hosting por FTP cada vez que haces push a "main".
+# Compila el sitio y lo sube a tu hosting por FTP. Solo se lanza a mano:
+# public_html es del WordPress hasta que la migración esté aprobada y haya backup verificado.
 # Configura los secretos en GitHub → Settings → Secrets and variables → Actions:
 #   FTP_SERVER   (ej. ftp.revolutiondigital.agency)
 #   FTP_USERNAME
@@ -6,8 +7,6 @@
 name: Deploy
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

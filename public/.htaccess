@@ -23,8 +23,14 @@ ErrorDocument 404 /404.html
   RewriteRule "(^|/)\.(?!well-known)" - [F]
 </IfModule>
 
+# --- Subdominio de pruebas fuera de buscadores ---
+<IfModule mod_setenvif.c>
+  SetEnvIfNoCase Host ^web\.revolutiondigital\.agency$ RD_STAGING
+</IfModule>
+
 # --- Cabeceras de seguridad ---
 <IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow" env=RD_STAGING
   # Solo se permiten recursos del propio dominio. WhatsApp y Mail se abren como enlaces, no se cargan.
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me; frame-ancestors 'none'; upgrade-insecure-requests"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"

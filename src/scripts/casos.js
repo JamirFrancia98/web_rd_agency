@@ -7,7 +7,7 @@ import { route } from '../i18n/routes.js';
 const {$, $$, clamp, pr, reduced, tr} = RD;
 RD.addText(T);
 
-/* ======= CASOS (ejemplos: cámbialos por los reales) ======= */
+/* ======= DEMOS CONCEPTUALES: empresas y cifras ficticias, no son clientes ======= */
 const CATS = [['all',['Todos','All','Tutti']],['software',['Software','Software','Software']],['ecommerce',['E-commerce','E-commerce','E-commerce']],['igaming',['iGaming','iGaming','iGaming']],['diseno',['Diseño','Design','Design']],['ia',['IA','AI','IA']]];
 const CASES = [
  {id:'nexa', cat:'software', demo:'nexa', lg:'NX', co:'Nexa Logistics', sec:['Logística & distribución','Logistics & distribution','Logistica & distribuzione'],
@@ -45,8 +45,8 @@ const CASES = [
  {id:'cobrapay', cat:'software', demo:'bank', lg:'CP', co:'CobraPay LatAm', sec:['Fintech & pagos','Fintech & payments','Fintech & pagamenti'],
   t:['Plataforma de conciliación y cobros recurrentes','Reconciliation and recurring billing platform','Piattaforma di riconciliazione e incassi ricorrenti'],
   d:['Unificamos pasarelas de pago y entidades bancarias locales para conciliar cobros recurrentes sin descuadres ni retrasos en el flujo de caja.','We unified payment gateways and local banks to reconcile recurring payments with no mismatches or cash-flow delays.','Abbiamo unificato gateway di pagamento e banche locali per riconciliare gli incassi ricorrenti senza differenze né ritardi.'],
-  tags:['Fintech engine','Multi-gateway','PCI-DSS compliant'],
-  m:[['100%',['Cobros conciliados automáticamente','Payments reconciled automatically','Incassi riconciliati automaticamente']],['99.99%',['Disponibilidad del sistema (SLA)','System availability (SLA)','Disponibilità del sistema (SLA)']]],
+  tags:['Fintech engine','Multi-gateway','Cobros recurrentes'],
+  m:[['100%',['Cobros conciliados automáticamente','Payments reconciled automatically','Incassi riconciliati automaticamente']],['99.99%',['Disponibilidad del sistema','System availability','Disponibilità del sistema']]],
   r:['Conciliar cuatro pasarelas y tres bancos tomaba una semana de trabajo manual cada mes.','Reconciling four gateways and three banks took a week of manual work every month.','Riconciliare quattro gateway e tre banche richiedeva una settimana di lavoro manuale al mese.'],
   s:['Motor de conciliación multi-gateway con dispersión automática y alertas en tiempo real.','Multi-gateway reconciliation engine with automatic payouts and real-time alerts.','Motore di riconciliazione multi-gateway con pagamenti automatici e avvisi in tempo reale.'],
   res:['Cierre de mes automático, 100% cuadrado y con disponibilidad del 99.99%.','Month-end close is automatic, 100% balanced and runs at 99.99% availability.','Chiusura mensile automatica, 100% quadrata e con disponibilità del 99,99%.']}
@@ -77,7 +77,7 @@ const DEMO = {
  bank: () => `<div class="panel" data-demo="bank"><div class="ph"><span class="lv">${tr('b.bank')}</span><em data-r="sq">${tr('b.sq')}</em></div>
    <div class="brow"><span>${tr('b.subs')}</span><b data-r="amt">$428,900.00</b></div>
    <div class="brow"><span>${tr('b.disp')}</span><span class="st done" data-r="st">${tr('b.done')}</span></div>
-   <div class="sla"><span>${tr('b.avail')}</span><b>SLA: 99.99%</b></div></div>`
+   <div class="sla"><span>${tr('b.avail')}</span><b>99.99%</b></div></div>`
 };
 const fmtMoney = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
 const runners = {
@@ -133,7 +133,7 @@ function cardHTML(c){
     <span class="co"><span class="lg">${c.lg}</span><b>${c.co}</b> / ${c.sec[L]}</span>
     <h3>${c.t[L]}</h3>
     ${wide ? '' : `<p>${c.d[L]}</p>`}
-    <div class="tags">${c.tags.map(x => `<span>${x}</span>`).join('')}</div>
+    <div class="tags">${[tr('tag.demo'), ...c.tags].map(x => `<span>${x}</span>`).join('')}</div>
     ${wide ? `<div class="metrics">${c.m.map((m,i) => `<div><b data-metric="${i}">${m[0]}${m[2] ? m[2][L] : ''}</b><span>${m[1][L]}</span></div>`).join('')}</div>` : ''}
     ${wide ? `<span class="more">${tr('more')} <span aria-hidden="true">→</span></span>` : ''}
   </div>`;

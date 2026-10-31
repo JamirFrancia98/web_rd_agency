@@ -45,7 +45,7 @@ export const T = {
 };
 export const LISTS = {
  'ft.l1':[['Desarrollo Web & Cloud','Plataformas iGaming','Integraciones API','Seguridad & Compliance'],['Web & Cloud Development','iGaming Platforms','API Integrations','Security & Compliance'],['Sviluppo Web & Cloud','Piattaforme iGaming','Integrazioni API','Sicurezza & Compliance']],
- 'ft.l2':[['Solución Turnkey','Casos de Éxito','Infraestructura Global','Métricas & Escala'],['Turnkey Solution','Success Stories','Global Infrastructure','Metrics & Scale'],['Soluzione Turnkey','Casi di successo','Infrastruttura globale','Metriche & Scala']],
+ 'ft.l2':[['Solución Turnkey','Demos conceptuales','Infraestructura Global','Métricas & Escala'],['Turnkey Solution','Concept demos','Global Infrastructure','Metrics & Scale'],['Soluzione Turnkey','Demo concettuali','Infrastruttura globale','Metriche & Scala']],
  'ft.l3':[['Sobre Nosotros','Equipo Directivo','Carreras & Talento','Contacto Directo'],['About Us','Leadership','Careers & Talent','Direct Contact'],['Chi siamo','Management','Carriere & Talenti','Contatto diretto']],
  'ft.l4':[['Términos y Condiciones','Política de Privacidad','Seguridad de Datos','Centro de Ayuda'],['Terms & Conditions','Privacy Policy','Data Security','Help Center'],['Termini e condizioni','Privacy policy','Sicurezza dei dati','Centro assistenza']]
 };

@@ -13,7 +13,7 @@
 /* ======================= CONFIGURACIÓN ======================= */
 const MAIL_TO      = 'contact@revolutiondigital.pe';   // a dónde llegan los mensajes
 const MAIL_FROM    = 'no-reply@revolutiondigital.agency';  // debe ser una cuenta de TU dominio (créala en cPanel)
-const SITE_HOSTS   = ['revolutiondigital.agency', 'www.revolutiondigital.agency', 'localhost', '127.0.0.1'];
+const SITE_HOSTS   = ['revolutiondigital.agency', 'www.revolutiondigital.agency', 'web.revolutiondigital.agency', 'localhost', '127.0.0.1'];
 const MAX_PER_HOUR = 5;
 const MIN_SECONDS  = 3;    // un humano tarda más de 3 s en llenar el formulario
 /* ============================================================= */
